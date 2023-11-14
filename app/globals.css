@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  max-width: 100vw;
+}
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden !important;
+}
+
+@layer base {
+  h1 {
+    @apply font-bold text-5xl;
+  }
+
+  a {
+    @apply text-xl;
+  }
+}
+
+@media screen and (max-width: 638px) {
+  .res {
+    @apply hidden;
+  }
+}
+
+.glass-btn {
+  @apply bg-[#1d1d20] border border-transparent hover:border-zinc-700 rounded-md px-2 py-1;
+}

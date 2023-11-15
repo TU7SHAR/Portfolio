@@ -9,7 +9,7 @@ const page = () => {
       <section className="grid lg:grid-cols-2 grid-cols-1 gap-x-6 justify-items-center">
         <div className="order-2 lg:order-none">
           <h1 className="lg:text-5xl text-4xl lg:leading-tight basis-1/2 font-bold mb-8">
-            I'm John Doe. I live in Lagos, where I design the future.
+            I'm Tushar. I live in Bharat, where I design the future.
           </h1>
 
           <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-8 lg:order-1 order-none mb-12">

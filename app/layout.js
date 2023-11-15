@@ -1,6 +1,8 @@
+import { Suspense } from "react";
+import Loading from "./Loading.jsx";
+import "./globals.css";
 import Footer from "./(components)/Footer";
 import Nav from "./(components)/Nav";
-import "./globals.css";
 
 export default function RootLayout({ children }) {
   return (
@@ -10,7 +12,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="flex max-w-[100vw]!important w-[100vw] flex-col bg-[#18181B]">
         <Nav />
-        {children}
+        <Suspense fallback={<Loading />}>{children}</Suspense>
         <Footer />
       </body>
     </html>

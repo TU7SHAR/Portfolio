@@ -50,7 +50,7 @@ const page = () => {
               loading="lazy"
               width={60}
               height={60}
-              className="rounded-full"
+              className="rounded-sm"
             ></Image>
             <div>
               <h2 class="font-semibold mb-1">C</h2>
@@ -61,48 +61,48 @@ const page = () => {
           </Link>
           <Link
             class="flex items-center gap-x-4 bg-[#1d1d20] border border-transparent hover:border-zinc-700 p-4 rounded-lg ease-in-out"
-            href="/Projects/c"
+            href="/Projects/javascript"
           >
             <Image
-              src="/C.png"
+              src="/javascript.png"
               alt="img"
               loading="lazy"
               width={60}
               height={60}
-              className="rounded-full"
+              className="rounded-sm"
             ></Image>
             <div>
-              <h2 class="font-semibold mb-1">C</h2>
+              <h2 class="font-semibold mb-1">JavaScript</h2>
               <div class="text-sm text-zinc-400">
-                General-purpose programming language
+                LightWeight Dynamic programming language
               </div>
             </div>
           </Link>
           <Link
             class="flex items-center gap-x-4 bg-[#1d1d20] border border-transparent hover:border-zinc-700 p-4 rounded-lg ease-in-out"
-            href="/Projects/c"
+            href="/Projects/typescript"
           >
             <Image
-              src="/C.png"
+              src="/typescript.png"
               alt="img"
               loading="lazy"
               width={60}
               height={60}
-              className="rounded-full"
+              className="rounded-sm"
             ></Image>
             <div>
-              <h2 class="font-semibold mb-1">C</h2>
+              <h2 class="font-semibold mb-1">TypeScript</h2>
               <div class="text-sm text-zinc-400">
-                General-purpose programming language
+                TypeScript is JavaScript with syntax for types.
               </div>
             </div>
           </Link>
           <Link
             class="flex items-center gap-x-4 bg-[#1d1d20] border border-transparent hover:border-zinc-700 p-4 rounded-lg ease-in-out"
-            href="/Projects/c"
+            href="/Projects/cpp"
           >
             <Image
-              src="/C.png"
+              src="/c++.png"
               alt="img"
               loading="lazy"
               width={60}
@@ -110,7 +110,7 @@ const page = () => {
               className="rounded-full"
             ></Image>
             <div>
-              <h2 class="font-semibold mb-1">C</h2>
+              <h2 class="font-semibold mb-1">C++</h2>
               <div class="text-sm text-zinc-400">
                 General-purpose programming language
               </div>

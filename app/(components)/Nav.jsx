@@ -32,7 +32,7 @@ export default async function Nav() {
               </Link>
               <Link
                 href="/ContactMe"
-                className="hover:text-purple-400 duration-300 res"
+                className="text-purple-400 hover:text-green-400 duration-300 res "
               >
                 Contact Me
               </Link>
@@ -50,7 +50,7 @@ export default async function Nav() {
                   >
                     <li>
                       <Link href="/Details" className="hover:text-white">
-                        Details
+                        Account Details
                       </Link>
                     </li>
                     <li>
@@ -88,7 +88,12 @@ export default async function Nav() {
                   </ul>
                 </div>
               ) : (
-                <Link href="/api/auth/signin">Login</Link>
+                <Link
+                  href="/Form?Form=Login"
+                  className="hover:text-purple-400 duration-300"
+                >
+                  Login
+                </Link>
               )}
             </div>
           </nav>

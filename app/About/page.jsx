@@ -9,13 +9,15 @@ const page = () => {
       <section className="grid lg:grid-cols-2 grid-cols-1 gap-x-6 justify-items-center">
         <div className="order-2 lg:order-none">
           <h1 className="lg:text-5xl text-4xl lg:leading-tight basis-1/2 font-bold mb-8">
-            I'm Tushar. I live in Bharat, where I design the future.
+            I'm <span className="text-purple-400">Tushar</span>. I live in
+            Bharat (<span className="text-purple-400"> भारत </span>), where I
+            design the <span className="text-purple-400">Future</span>.
           </h1>
 
           <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-8 lg:order-1 order-none mb-12">
             <p>
               I find joy in sharing my knowledge and insights through carefully
-              crafted articles. Some of my content has been featured in popular
+              crafted articles. Some of my Ideas has been featured in popular
               blogs and newsletters.
             </p>
             <p>
@@ -28,16 +30,26 @@ const page = () => {
             <p>
               In my spare time, when I'm not knee-deep in code or sharing my
               knowledge, you'll find me indulging in a variety of creative
-              pursuits. Whether it's strumming on my trusty guitar,
-              experimenting with watercolors, or getting lost in a captivating
-              book, I believe in nurturing a well-rounded life outside of the
-              digital realm.
+              pursuits. Whether it's in locale gym, experimenting with body, or
+              getting lost in a captivating book, I believe in nurturing a
+              well-rounded life outside of the digital realm.
             </p>
-            <p>
+            <p className="text-green-500">
               If you ever spot me in the wild, don't hesitate to say hello!
-              Let's grab a cup of coffee and geek out over the latest
-              advancements in front-end development or discuss our favorite
-              obscure programming languages.
+              Let's grab a cup of Chai and geek out over the latest advancements
+              in front-end development or discuss our favorite obscure
+              programming languages.
+            </p>
+            <p className="text-green-400">
+              यदि आप कभी मुझे देखें, तो मिलने कहने में हिचकिचाएं नहीं! आइए एक कप
+              चाय लेते हैं और विकास में होने वाली नवीनतम प्रगतियों पर या हमारी
+              पसंदीदा असामान्य प्रोग्रामिंग भाषाओं पर बात करते हैं।
+            </p>
+            <p className="text-green-300">
+              ਜੇ ਤੁਸੀਂ ਕਦੇ ਵੀ ਮੇਰੇ ਨੂੰ ਜਿੰਦੇ 'ਚ ਦੇਖੋ, ਤਾਂ ਇਹ ਨਾਨਾ ਨਾ ਕਹੋ! ਆਓ ਇੱਕ
+              ਕੱਪ ਚਾ ਪੀਣਾ ਤੇ ਫਰੰਟ-ਇੰਡ ਡਵੈਲਪਮੈਂਟ ਵਿੱਚ ਹੋਰਾਂ ਦੇ ਨਵੀਨਤਮ ਪਰਗਟੀਆਂ
+              ਉੱਤੇ ਜੀਕ ਆਉਣ ਜਾਂ ਸਾਡੀਆਂ ਪਸੰਦੀਦਾ ਅਜੂਬਦੁਨ ਪ੍ਰੋਗਰਾਮਿੰਗ ਭਾਸ਼ਾਵਾਂ 'ਤੇ
+              ਗੱਲਬਾਤ ਕਰੀਏ।
             </p>
           </div>
         </div>

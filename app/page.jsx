@@ -20,7 +20,7 @@ const page = () => {
             <ul className="flex items-center gap-x-6 my-10">
               <li>
                 <Link
-                  href="/"
+                  href="https://github.com/TU7SHAR"
                   rel="noreferer noopener"
                   className="hover:text-purple-400 duration-300"
                 >
@@ -29,7 +29,7 @@ const page = () => {
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="https://www.snapchat.com/add/tusharoogautam"
                   rel="noreferer noopener"
                   className="hover:text-purple-400 duration-300"
                 >
@@ -38,20 +38,20 @@ const page = () => {
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="https://discordapp.com/users/617386268745138320"
                   className="hover:text-purple-400 duration-300"
                   rel="noreferer noopener"
                 >
-                  LinkedIn
+                  Discord
                 </Link>
               </li>
               <li>
                 <Link
                   className="hover:text-purple-400 duration-300"
-                  href="/"
+                  href="mailto:gautams4code@gmail.com?subject=Redirected%20From%20Portfolio"
                   rel="noreferer noopener"
                 >
-                  Twitch
+                  Mail
                 </Link>
               </li>
             </ul>

@@ -37,6 +37,10 @@ export default async function Project() {
             first item in the array. Pass-by-reference is simulated in C by
             explicitly passing pointers to the thing being referenced.
           </p>
+          <pre className="text-yellow-400">
+            *All Definations/Introductions Have been sourced from Original
+            Sites!!
+          </pre>
         </div>
       </div>
     </main>

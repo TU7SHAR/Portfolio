@@ -4,12 +4,17 @@ import React from "react";
 // import LoginForm from "../(components)/LoginForm.jsx";
 import Image from "next/image.js";
 import { useSearchParams } from "next/navigation.js";
+import { NextSeo } from "next-seo";
 
 export default function page() {
   let value = useSearchParams().get("Form");
   console.log(value);
   return (
     <>
+      <NextSeo
+        title="Tushar Gautam - Contact Form"
+        description="To Get in Touch with me Fill this amazingly designed form, Awaiting Your response"
+      />
       <section className="text-white flex w-full justify-center items-center h-[60vh]">
         <main className="max-w-7xl">
           <div className="card card-side bg-[rgba(0,0,0,0.09)] m-1  shadow-lg sm:p-5 p-3">

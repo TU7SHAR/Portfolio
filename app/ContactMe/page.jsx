@@ -4,6 +4,7 @@ import Image from "next/image";
 import mailSvg from "../../public/mail.svg";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { NextSeo } from "next-seo";
 
 const page = () => {
   const router = useRouter();
@@ -61,6 +62,10 @@ const page = () => {
 
   return (
     <>
+      <NextSeo
+        title="Tushar Gautam - Contact Page | Portfolio "
+        description=" Get in Touch with Tushar Gautam, Full Stack Developer . Access exclusive content , offers personalized services and opinions, Explore my Portfolio for more"
+      />
       <div className="card lg:card-side bg-base-100 border text-white border-purple-400 shadow-xl p-1 mx-11">
         <figure>
           <Image src={mailSvg} width={100} height={100} />

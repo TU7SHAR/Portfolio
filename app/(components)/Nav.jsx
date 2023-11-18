@@ -3,7 +3,6 @@ import { getServerSession } from "next-auth";
 import { options } from "../api/auth/[...nextauth]/options.js";
 import Image from "next/image.js";
 import "../globals.css";
-import Logo from "../../public/logo.png";
 
 export default async function Nav() {
   const session = await getServerSession(options);
@@ -14,7 +13,7 @@ export default async function Nav() {
         <div className=" max-h-[10vh] py-6 md:px-16  px-5 border-b  border-zinc-800 ">
           <nav className=" mx-auto flex items-center justify-between w-full">
             <Link href="/" className="flex">
-              <Image src={Logo} width={25} height={25} alt="logo" />
+              <Image src="/logo.png" width={25} height={25} alt="logo" />
               <span className="text-purple-400 ml-1">Tushar Gautam</span>
             </Link>
             <div className="flex gap-10 text-[#767678] flex-col sm:flex-row ">

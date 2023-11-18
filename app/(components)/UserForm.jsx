@@ -41,10 +41,10 @@ const UserForm = () => {
 
     if (!res.ok) {
       const response = await res.json();
-      setErrorMessage(response.message);
+      setErrorMessage(response.msg);
     } else {
       router.refresh();
-      router.push("/");
+      router.push("/Form?Form=Login");
     }
   };
   return (
@@ -101,7 +101,7 @@ const UserForm = () => {
         </div>
         <div className="">
           <p className=" text-red-500 items-end flex">
-            {errorMessage !== "" ? `*${errorMessage}` : ""}
+            {errorMessage !== "" ? `*${errorMessage} error` : ""}
           </p>
         </div>
       </form>

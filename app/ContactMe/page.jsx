@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import mailSvg from "../../public/mail.svg";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const page = () => {
@@ -10,28 +11,35 @@ const page = () => {
   const [name, setname] = useState("");
   const [subject, setsubject] = useState("");
   const [mailBody, setmailBody] = useState("");
+  const { data: session, status } = useSession();
 
-  const handleName = async (event) => {
-    let value = await event.target.value;
+  useEffect(() => {
+    console.log(session);
+    console.log(status);
+    if (status === "authenticated") {
+      setmail(session.user.email);
+    } else if (status === "unauthenticated") {
+      router.push("/api/auth/signin?callbackUrl=/ContactMe");
+    }
+  }, [session, status]);
+
+  const handleName = (event) => {
+    let value = event.target.value;
     setname(value);
   };
 
-  const handleMailAddr = async (event) => {
-    let value = await event.target.value;
-    setmail(value);
-  };
-
-  const handleSubject = async (event) => {
-    let value = await event.target.value;
+  const handleSubject = (event) => {
+    let value = event.target.value;
     setsubject(value);
   };
 
-  const handleMailBody = async (event) => {
-    let value = await event.target.value;
+  const handleMailBody = (event) => {
+    let value = event.target.value;
     setmailBody(value);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     const res = await fetch("/api/auth/ContactData", {
       method: "POST",
       body: JSON.stringify({
@@ -42,13 +50,10 @@ const page = () => {
       }),
       "content-type": "application/json",
     });
-
-    if (!res.ok) {
-      const response = await res.json();
-      console.log(response);
+    if (res.ok) {
+      router.push("/ContactMe/Form?form=success");
     } else {
-      router.refresh();
-      router.push("/ContactMe/ThankYou");
+      router.push("/ContactMe/Form?form=fail");
     }
   };
 
@@ -64,7 +69,7 @@ const page = () => {
           <h2 className="card-title flex items-center justify-center text-purple-400">
             Get In Touch
           </h2>
-          <form action="" className="flex flex-col w-[100%]">
+          <form onSubmit={handleSubmit} className="flex flex-col w-[100%]">
             <input
               type="text"
               placeholder="Your Name"
@@ -73,11 +78,10 @@ const page = () => {
               value={name}
             />
             <input
-              type="text"
-              placeholder="Gmail Address Only"
+              type="email"
+              readOnly
               value={mail}
-              onChange={handleMailAddr}
-              className="input input-bordered input-accent w-full border-purple-400 mb-3 focus:outline-none"
+              className="input cursor-none text-white input-bordered input-accent w-full border-purple-400 mb-3 focus:outline-none"
             />
             <input
               type="text"

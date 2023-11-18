@@ -6,7 +6,6 @@ import Link from "next/link";
 const UserForm = () => {
   const router = useRouter();
   const [name, setName] = useState("");
-  const [mail, setMail] = useState("");
   const [psswd, setPsswd] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -35,7 +34,7 @@ const UserForm = () => {
 
     if (!res.ok) {
       const response = await res.json();
-      setErrorMessage(response.message);
+      setErrorMessage(response.msg);
     } else {
       router.refresh();
       router.push("/");
@@ -71,7 +70,7 @@ const UserForm = () => {
         <div className="card-actions justify-center border-b border-spacing-3 border-zinc-800 mb-4">
           <input
             type="submit"
-            value="Create User"
+            value="Login"
             onClick={handleSubmit}
             className="border my-3 p-2 rounded-lg border-green-400 text-green-400 hover:bg-green-600 hover:text-white hover:border-none  duration-300 cursor-pointer"
           />

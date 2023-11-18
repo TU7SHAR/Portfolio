@@ -3,11 +3,9 @@ import React from "react";
 import UserForm from "../(components)/UserForm.jsx";
 import LoginForm from "../(components)/LoginForm.jsx";
 import Image from "next/image.js";
-import { usePathname, useSearchParams } from "next/navigation.js";
+import { useSearchParams } from "next/navigation.js";
 
 export default function page() {
-  let pathname = usePathname().substring(1);
-  console.log(pathname);
   let value = useSearchParams().get("Form");
   console.log(value);
   return (

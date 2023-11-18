@@ -29,7 +29,7 @@ const page = async () => {
             <h2 className="md:font-bold text-sm font-thin  sm:text-2xl">
               {session.user.email}
             </h2>
-            <p classname="font-bold text-xl">{session.user.role}</p>
+            <p className="font-bold text-xl">{session.user.role}</p>
             <div className="card-actions ">
               <button className="btn btn-primary normal-case  hover:text-red-600 hover:border-red-600]">
                 <Link href="/api/auth/signout?callbackUrl=/">LogOut</Link>

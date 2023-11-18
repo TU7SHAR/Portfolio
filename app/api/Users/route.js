@@ -3,11 +3,11 @@ import bcrypt from "bcrypt";
 import User from "../../(models)/User.jsx";
 export async function POST(req) {
   try {
-    const { name, mail, psswd } = await req.json();
-    const userData = { name, mail, psswd };
+    const { username, email, password } = await req.json();
+    const userData = { username, email, password };
 
     //confirms data exsists
-    if (!userData.mail || !userData.psswd || !userData.name) {
+    if (!userData.email || !userData.password || !userData.username) {
       return NextResponse.json(
         {
           message: "All Fields are Required!",
@@ -17,7 +17,7 @@ export async function POST(req) {
     }
 
     //check for exsisiting Mail
-    const duplicateMail = await User.findOne({ mail: userData.mail })
+    const duplicateMail = await User.findOne({ email: userData.email })
       .lean()
       .exec();
 
@@ -25,18 +25,18 @@ export async function POST(req) {
       return NextResponse.json({ msg: "Duplicate Email" }, { status: 409 });
     }
 
-    const duplicateUser = await User.findOne({ name: userData.name });
+    const duplicateUser = await User.findOne({ username: userData.username });
     if (duplicateUser) {
       return NextResponse.json({ msg: "Duplicate Name" }, { status: 409 });
     }
 
-    const hashPsswd = await bcrypt.hash(userData.psswd, 12);
-    userData.psswd = hashPsswd;
+    const hashPsswd = await bcrypt.hash(userData.password, 12);
+    userData.password = hashPsswd;
 
     await User.create(userData);
     return NextResponse.json({ msg: "User Created." }, { status: 201 });
   } catch (err) {
-    console.log(res);
+    console.log(err);
     return NextResponse.json({ msg: "Error", err }, { status: 500 });
   }
 }

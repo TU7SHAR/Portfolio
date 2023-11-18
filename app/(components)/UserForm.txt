@@ -32,9 +32,9 @@ const UserForm = () => {
     const res = await fetch("/api/Users", {
       method: "POST",
       body: JSON.stringify({
-        name: name,
-        mail: mail,
-        psswd: psswd,
+        username: name,
+        email: mail,
+        password: psswd,
       }),
       "content-type": "application/json",
     });

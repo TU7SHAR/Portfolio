@@ -88,7 +88,7 @@ export default async function Nav() {
                 </div>
               ) : (
                 <Link
-                  href="/Form?Form=Login"
+                  href="/api/auth/signin?callbackUrl=/Details"
                   className="hover:text-purple-400 duration-300"
                 >
                   Login

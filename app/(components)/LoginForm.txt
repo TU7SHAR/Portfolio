@@ -23,17 +23,18 @@ const UserForm = () => {
     events.preventDefault();
     setErrorMessage("");
 
-    const res = await fetch("/api/Users", {
+    const res = await fetch("/api/auth/callbacks/credentials", {
       method: "POST",
       body: JSON.stringify({
-        name: name,
-        psswd: psswd,
+        usernaname: name,
+        password: psswd,
       }),
       "content-type": "application/json",
     });
 
     if (!res.ok) {
       const response = await res.json();
+      console.log(response);
       setErrorMessage(response.msg);
     } else {
       router.refresh();

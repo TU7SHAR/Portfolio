@@ -1,0 +1,47 @@
+   CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        username: { label: "Username", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        await dbConnect();
+        try {
+          const { username, password } = credentials;
+          const userData = { name: username, psswd: password };
+
+          if (!userData.name || !userData.psswd) {
+            return NextResponse.json(
+              { msg: "error Empty Fields" },
+              { status: 404 }
+            );
+          }
+
+          const userFound = await User.findOne({ name: username });
+
+          if (userFound) {
+            const match = await bcrypt.compare(password, userFound.psswd);
+            if (!match) {
+              return NextResponse.json(
+                { msg: "error Invalid Password or Username" },
+                { status: 404 }
+              );
+            } else {
+              return NextResponse.json(
+                { msg: "error User Not Found!" },
+                { status: 404 }
+              );
+            }
+          }
+          return Promise.resolve({
+            msg: "User Found Success",
+            email: userFound.mail,
+            name: username,
+            role: "Manual User",
+          });
+        } catch (error) {
+          console.log(error);
+          return NextResponse.json({ msg: err }, { status: 404 });
+        }
+      },
+    }),

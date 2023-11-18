@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import UserForm from "../(components)/UserForm.jsx";
-import LoginForm from "../(components)/LoginForm.jsx";
+// import UserForm from "../(components)/UserForm.jsx";
+// import LoginForm from "../(components)/LoginForm.jsx";
 import Image from "next/image.js";
 import { useSearchParams } from "next/navigation.js";
 

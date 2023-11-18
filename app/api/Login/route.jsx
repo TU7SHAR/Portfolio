@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import User from "../../(models)/User.jsx";
+import jwt from "jsonwebtoken";
 
 export async function POST(req) {
   try {
@@ -12,6 +13,7 @@ export async function POST(req) {
     }
 
     const userFound = await User.findOne({ name: name });
+    let mail = "Unreal Mail";
 
     if (userFound) {
       bcrypt.compare(psswd, userData.psswd, (err, res) => {
@@ -21,19 +23,20 @@ export async function POST(req) {
             { msg: "Invalid Password" },
             { status: 402 }
           );
-        else {
-          return NextResponse.json(
-            {
-              msg: "User Found Succcess",
-              email: email,
-              name: name,
-              role: "Manual User",
-            },
-            { status: 202 }
-          );
-        }
       });
     }
+    const session = jwt.sign({ userId: userFound._id }, process.env.jwt_secret);
+
+    return NextResponse.json(
+      {
+        msg: "User Found Succcess",
+        email: userFound.mail,
+        name: name,
+        role: "Manual User",
+        session: session,
+      },
+      { status: 202 }
+    );
   } catch (error) {
     console.log(error);
     return NextResponse.json({ msg: error, msgReview: "Error While Logging" });

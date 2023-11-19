@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { Suspense } from "react";
 import Loading from "./Loading.jsx";
 import "./globals.css";
@@ -62,7 +63,10 @@ export default function RootLayout({ children }) {
       <AuthProvider>
         <body className="flex max-w-[100vw]!important w-[100vw] flex-col bg-[#18181B]">
           <Nav />
-          <Suspense fallback={<Loading />}>{children}</Suspense>
+          <Suspense fallback={<Loading />}>
+            {children}
+            <Analytics />
+          </Suspense>
           <Footer />
         </body>
       </AuthProvider>

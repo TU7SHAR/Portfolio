@@ -5,10 +5,6 @@ import Link from "next/link";
 export default async function Project() {
   return (
     <>
-      <NextSeo
-        title="Tushar Gautam - JavaScript |Javascript | js | Backend | Middleware | Frontentd | Portfolio | Review"
-        description="A all rounder Langauage for building any kind of application, generally used for web development , and my favourate language"
-      />
       <main className="max-w-6xl mx-auto lg:px-16 px-8 text-white">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-start justify-between mb-4">

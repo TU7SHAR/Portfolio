@@ -7,6 +7,22 @@ const page = () => {
       <NextSeo
         title="Tushar Gautam - Projects | Languages | Tools Used | Portfolio"
         description="Explore my portfolio of projects. As a full stack developer, I’ve worked on a range of applications, from dynamic web apps to responsive websites. I have Used a range of programing languages, frameworks , libraraies, tools a wide variety of experinces with hunger for learning"
+      />{" "}
+      <NextSeo
+        title="Tushar Gautam - CPP | C++ | Portfolio"
+        description="Explore and review my opionions on this programming language ,Article Sourced From Wikipedia, General Purpose Language CPP for building  fast speed softwares for instamce used for building trading softwares"
+      />
+      <NextSeo
+        title="Tushar Gautam C Programming language | Project |Review |View |Portfolio"
+        description="I have a special connection with this language a very annoying and rememberable one, This was my first Programming Language and i spent too much time learning this language "
+      />
+      <NextSeo
+        title="Tushar Gautam - Projects | TypeScript | Typescript | Typescript vs Javascript | Javascript vs Typescript | Portfolio"
+        description="A new emerging successor of Javascript - Typescript | Article Sourced from Typescript.org | Wikipedia"
+      />
+      <NextSeo
+        title="Tushar Gautam - JavaScript |Javascript | js | Backend | Middleware | Frontentd | Portfolio | Review"
+        description="A all rounder Langauage for building any kind of application, generally used for web development , and my favourate language"
       />
       <main className="flex- max-w-7xl mx-auto md:px-16 px-6 text-white">
         <section class="max-w-2xl mb-16">

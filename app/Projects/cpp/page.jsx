@@ -5,10 +5,6 @@ import Link from "next/link";
 export default async function Project() {
   return (
     <>
-      <NextSeo
-        title="Tushar Gautam - CPP | C++ | Portfolio"
-        description="Explore and review my opionions on this programming language ,Article Sourced From Wikipedia, General Purpose Language CPP for building  fast speed softwares for instamce used for building trading softwares"
-      />
       <main className="max-w-6xl mx-auto lg:px-16 px-8 text-white">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-start justify-between mb-4">

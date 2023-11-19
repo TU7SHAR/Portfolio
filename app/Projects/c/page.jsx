@@ -6,10 +6,6 @@ import { NextSeo } from "next-seo";
 export default async function Project() {
   return (
     <>
-      <NextSeo
-        title="Tushar Gautam C Programming language | Project |Review |View |Portfolio"
-        description="I have a special connection with this language a very annoying and rememberable one, This was my first Programming Language and i spent too much time learning this language "
-      />
       <main className="max-w-6xl mx-auto lg:px-16 px-8 text-white">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-start justify-between mb-4">

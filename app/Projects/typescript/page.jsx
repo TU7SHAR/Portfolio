@@ -5,10 +5,6 @@ import Link from "next/link";
 export default async function Project() {
   return (
     <>
-      <NextSeo
-        title="Tushar Gautam - Projects | TypeScript | Typescript | Typescript vs Javascript | Javascript vs Typescript | Portfolio"
-        description="A new emerging successor of Javascript - Typescript | Article Sourced from Typescript.org | Wikipedia"
-      />
       <main className="max-w-6xl mx-auto lg:px-16 px-8 text-white">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-start justify-between mb-4">

@@ -1,10 +1,19 @@
 import Link from "next/link";
 import HeroSvg from "./(components)/HeroSvg.jsx";
 import AboutFooter from "./(components)/AboutFooter.jsx";
+import { NextSeo } from "next-seo";
 
 const page = () => {
   return (
     <>
+      <NextSeo
+        title="Tushar Gautam - Full Stack Developer | Home | India |Bharat"
+        description="Welcome to the official website of John Doe, a full stack developer specializing in React and Node.js. Explore my portfolio, learn more about me, and get in touch."
+      />
+      <SEO
+        title="Tushar Gautam - WebDeveloper And NextJS Javascript Specialist"
+        description="A Simple , beautiful themed website using Next.js for Tech Enthusiast, this is static and responsive website all created with focus"
+      />
       <main className=" text-white max-w-[100vw]  lg:px-16 px-6 flex-auto">
         <section className="flex xl:flex-row flex-col xl:items-center items-start xl:justify-center justify-between gap-x-1 lg:mt-32 mt-20 mb-16">
           <div className="">

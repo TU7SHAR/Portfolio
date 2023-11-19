@@ -1,14 +1,9 @@
-import { NextSeo } from "next-seo";
 import Image from "next/image";
 import Link from "next/link";
 
 const AboutFooter = () => {
   return (
     <>
-      <NextSeo
-        title="Tushar Gautam - Portfolio | WebPage| Footer | Common Element"
-        description="Tushar Gautam A common element in all Pages which Tells about all rights Reseved or not"
-      />
       <section className="max-w-[100vw] mt-32">
         <div>
           <h2 className="font-semibold text-4xl mb-4">

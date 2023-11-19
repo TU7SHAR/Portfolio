@@ -1,18 +1,8 @@
-import { NextSeo } from "next-seo";
 import Link from "next/link";
 
 const Fail = () => {
   return (
     <>
-      {" "}
-      <NextSeo
-        title="Tushar Gautam - Contact Form"
-        description="To Get in Touch with me Fill this amazingly designed form, Awaiting Your response"
-      />
-      <NextSeo
-        title="Tushar Gautam - Unfortunater | Unsuccessfull Query "
-        description="Tushar Gautam -Query Unsuccesfull Message Display For Portfolio"
-      />
       <div className="flex flex-col justify-center lg:text-3xl font-medium lg:my-8 my-4 cursor-pointer text-xl w-full items-center">
         <p className="flex items-center">
           UnFortunately Your Query was UnSuccessful

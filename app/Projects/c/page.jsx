@@ -32,11 +32,12 @@ export default async function Project() {
             <p>
               C is an imperative, procedural language in the ALGOL tradition. It
               has a static type system. In C, all executable code is contained
-              within subroutines (also called "functions", though not in the
-              sense of functional programming). Function parameters are passed
-              by value, although arrays are passed as pointers, i.e. the address
-              of the first item in the array. Pass-by-reference is simulated in
-              C by explicitly passing pointers to the thing being referenced.
+              within subroutines (also called &quot;functions&quot;, though not
+              in the sense of functional programming). Function parameters are
+              passed by value, although arrays are passed as pointers, i.e. the
+              address of the first item in the array. Pass-by-reference is
+              simulated in C by explicitly passing pointers to the thing being
+              referenced.
             </p>
             <pre className="text-yellow-400">
               *All Definations/Introductions Have been sourced from Original

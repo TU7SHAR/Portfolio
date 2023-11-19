@@ -4,14 +4,6 @@ const Success = () => {
   return (
     <>
       {" "}
-      <NextSeo
-        title="Tushar Gautam - Contact Form"
-        description="To Get in Touch with me Fill this amazingly designed form, Awaiting Your response"
-      />
-      <NextSeo
-        title="Tushar Gautam - fortunately | successfull Query "
-        description="Tushar Gautam -Query Succesfull Message Display For Portfolio"
-      />
       <div className="flex flex-col justify-center lg:text-3xl font-medium lg:my-8 my-4 cursor-pointer text-xl w-full items-center">
         <p className="flex items-center">
           Your Query is sent Successfully

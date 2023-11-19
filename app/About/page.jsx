@@ -2,15 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import "../globals.css";
-import { NextSeo } from "next-seo";
 
 const page = () => {
   return (
     <>
-      <NextSeo
-        title="Tushar Gautam -About Page | Portfolio  Full Stack Developer"
-        description="Tushar Gautam, About Me Want to Know About Me from Here, A Tech Geek And Full stack Developer"
-      />
       <main className="flex-1  text-white lg:max-w-7xl mx-auto max-w-3xl md:px-16 px-6">
         <section className="grid lg:grid-cols-2 grid-cols-1 gap-x-6 justify-items-center">
           <div className="order-2 lg:order-none">

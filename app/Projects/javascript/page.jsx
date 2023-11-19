@@ -1,4 +1,3 @@
-import { NextSeo } from "next-seo";
 import Image from "next/image";
 import Link from "next/link";
 

@@ -3,7 +3,6 @@ import { redirect } from "next/navigation";
 import Image from "next/image.js";
 import Link from "next/link.js";
 import { getServerSession } from "next-auth";
-import { NextSeo } from "next-seo";
 
 const page = async () => {
   const session = await getServerSession(options);
@@ -14,10 +13,6 @@ const page = async () => {
 
   return (
     <>
-      <NextSeo
-        title="Tushar Gautam - User Details and Image"
-        description="Log in to your account to interact with Tushar Gautam, full stack developer. Access exclusive content, personalized services, and more."
-      />
       <div className="flex justify-center w-full text-white h-[100%] items-center flex-1 ">
         <div className="card  bg-zinc-800  shadow-xl">
           <figure className="px-10 pt-10">

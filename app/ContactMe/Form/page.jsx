@@ -3,16 +3,11 @@ import React from "react";
 import Success from "../../(components)/Success.jsx";
 import Fail from "../../(components)/Fail.jsx";
 import { useSearchParams } from "next/navigation.js";
-import { NextSeo } from "next-seo";
 
-const page = () => {
+const Page = () => {
   let value = useSearchParams().get("form");
   return (
     <>
-      <NextSeo
-        title="Tushar Gautam - Confirmatiuon Page | Confiramtion | Get In Touch | Portfolio"
-        description="Tushar Gautam, Confirmation Page and  Query Ot Confirmed Page Query Reciever and Portfolio Exploartion Tech Enthusiast, Full Stack Developer "
-      />
       <main className="text-white flex w-full h-[61vh] items-center justify-center">
         <div className="card  bg-zinc-800 shadow-xl ">
           <div className="card-body">
@@ -27,4 +22,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

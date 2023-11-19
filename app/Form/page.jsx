@@ -4,9 +4,8 @@ import React from "react";
 // import LoginForm from "../(components)/LoginForm.jsx";
 import Image from "next/image.js";
 import { useSearchParams } from "next/navigation.js";
-import { NextSeo } from "next-seo";
 
-export default function page() {
+export default function Page() {
   let value = useSearchParams().get("Form");
   console.log(value);
   return (

@@ -10,10 +10,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <SEO
-          title="Tushar Gautam - WebDeveloper And NextJS Javascript Specialist"
-          description="A Simple , beautiful themed website using Next.js for Tech Enthusiast, this is static and responsive website all created with focus"
-        />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <AuthProvider>

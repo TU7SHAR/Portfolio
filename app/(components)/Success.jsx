@@ -3,6 +3,11 @@ import Link from "next/link";
 const Success = () => {
   return (
     <>
+      {" "}
+      <NextSeo
+        title="Tushar Gautam - Contact Form"
+        description="To Get in Touch with me Fill this amazingly designed form, Awaiting Your response"
+      />
       <NextSeo
         title="Tushar Gautam - fortunately | successfull Query "
         description="Tushar Gautam -Query Succesfull Message Display For Portfolio"

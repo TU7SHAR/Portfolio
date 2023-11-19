@@ -72,7 +72,7 @@ const page = () => {
           <ul className="">
             <li>
               <Link
-                href="mailto:gautams4code@gmail.com?subject=Redirected%20From%20Portfolio"
+                href="mailto:gautams4mail@gmail.com?subject=Redirected%20From%20Portfolio"
                 className="mt-10 flex items-center gap-x-2 hover:text-purple-400 duration-300 text-lg"
               >
                 <svg

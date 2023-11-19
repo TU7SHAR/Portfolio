@@ -48,7 +48,7 @@ const page = () => {
               <li>
                 <Link
                   className="hover:text-purple-400 duration-300"
-                  href="mailto:gautams4code@gmail.com?subject=Redirected%20From%20Portfolio"
+                  href="mailto:gautams4mail@gmail.com?subject=Redirected%20From%20Portfolio"
                   rel="noreferer noopener"
                 >
                   Mail

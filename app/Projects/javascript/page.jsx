@@ -55,7 +55,7 @@ export default async function Project() {
               programming) styles.
             </p>
             <p>
-              JavaScript's dynamic capabilities include runtime object
+              JavaScript&apos;s dynamic capabilities include runtime object
               construction, variable parameter lists, function variables,
               dynamic script creation (via eval), object introspection (via
               for...in and Object utilities), and source-code recovery

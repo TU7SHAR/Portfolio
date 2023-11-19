@@ -21,10 +21,11 @@ const page = () => {
               Software engineer, Technical writer and Designer
             </h1>
             <p className="text-base text-zinc-400 leading-relaxed">
-              I'm Tushar Gautam, a passionate software developer specializing in
-              Web-Development (Full Stack). With a knack for problem-solving, I
-              love creating efficient and user-friendly applications, constantly
-              seeking innovative ways to improve myself and the world at large
+              I&apos;m Tushar Gautam, a passionate software developer
+              specializing in Web-Development (Full Stack). With a knack for
+              problem-solving, I love creating efficient and user-friendly
+              applications, constantly seeking innovative ways to improve myself
+              and the world at large
             </p>
             <ul className="flex items-center gap-x-6 my-10">
               <li>

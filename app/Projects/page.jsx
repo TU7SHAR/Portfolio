@@ -27,12 +27,12 @@ const page = () => {
       <main className="flex- max-w-7xl mx-auto md:px-16 px-6 text-white">
         <section class="max-w-2xl mb-16">
           <h1 class="text-3xl font-bold tracking-tight sm:text-5xl mb-6 lg:leading-[3.7rem] leading-tight">
-            Featured projects I've built over the years
+            Featured projects I&apos;ve built over the years
           </h1>
           <p class="text-base text-zinc-400 leading-relaxed">
-            I've worked on tons of little projects over the years but these are
-            all on my local device sadly but i will try to make them sooner or
-            later public. So till then B Bye!
+            I&apos;ve worked on tons of little projects over the years but these
+            are all on my local device sadly but i will try to make them sooner
+            or later public. So till then B Bye!
           </p>
         </section>
         <section class="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 mb-12">

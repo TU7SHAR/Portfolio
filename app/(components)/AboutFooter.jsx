@@ -52,8 +52,8 @@ const AboutFooter = () => {
                 2004-03-01 - 2020-04-01
               </small>
               <p className="text-base text-zinc-400 my-4">
-                If you set your goals ridiculously high and it's a failure, you
-                will fail above everyone else
+                If you set your goals ridiculously high and it&apos;s a failure,
+                you will fail above everyone else
               </p>
             </div>
           </div>
@@ -90,7 +90,7 @@ const AboutFooter = () => {
                 2020-04-01 - 2021-10-01
               </small>
               <p className="text-base text-zinc-400 my-4">
-                In life's dance, hardships are steps that teach. Approach
+                In life&apos;s dance, hardships are steps that teach. Approach
                 challenges with the playfulness of a child, for even in the
                 toughest moments, and uncover most valuable lessons.
               </p>
@@ -129,8 +129,8 @@ const AboutFooter = () => {
                 2021-10-01 - 2022-05-01
               </small>
               <p className="text-base text-zinc-400 my-4">
-                Don't be distracted by criticism. Remember — the only taste of
-                success some people get is to take a bite out of you
+                Don&apos;t be distracted by criticism. Remember — the only taste
+                of success some people get is to take a bite out of you
               </p>
             </div>
           </div>
@@ -167,8 +167,8 @@ const AboutFooter = () => {
                 2020-12-12
               </small>
               <p className="text-base text-zinc-400 my-4">
-                Many of life's failures are people who did not realize how close
-                they were to success when they gave up
+                Many of life&apos;s failures are people who did not realize how
+                close they were to success when they gave up
               </p>
             </div>
           </div>

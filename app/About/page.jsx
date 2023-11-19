@@ -15,9 +15,9 @@ const page = () => {
         <section className="grid lg:grid-cols-2 grid-cols-1 gap-x-6 justify-items-center">
           <div className="order-2 lg:order-none">
             <h1 className="lg:text-5xl text-4xl lg:leading-tight basis-1/2 font-bold mb-8">
-              I'm <span className="text-purple-400">Tushar</span>. I live in
-              Bharat (<span className="text-purple-400"> भारत </span>), where I
-              design the <span className="text-purple-400">Future</span>.
+              I&apos;m <span className="text-purple-400">Tushar</span>. I live
+              in Bharat (<span className="text-purple-400"> भारत </span>), where
+              I design the <span className="text-purple-400">Future</span>.
             </h1>
 
             <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-8 lg:order-1 order-none mb-12">
@@ -27,24 +27,25 @@ const page = () => {
                 in popular blogs and newsletters.
               </p>
               <p>
-                I'm also a firm believer in the power of community and
+                I&apos;m also a firm believer in the power of community and
                 collaboration. You might spot me at local tech meetups, eagerly
                 engaging in discussions and exchanging ideas with fellow
                 developers. I thrive on the energy of these interactions and
                 value the connections formed within our vibrant tech ecosystem.
               </p>
               <p>
-                In my spare time, when I'm not knee-deep in code or sharing my
-                knowledge, you'll find me indulging in a variety of creative
-                pursuits. Whether it's in locale gym, experimenting with body,
-                or getting lost in a captivating book, I believe in nurturing a
-                well-rounded life outside of the digital realm.
+                In my spare time, when I&apos;m not knee-deep in code or sharing
+                my knowledge, you&apos;ll find me indulging in a variety of
+                creative pursuits. Whether it&apos;s in locale gym,
+                experimenting with body, or getting lost in a captivating book,
+                I believe in nurturing a well-rounded life outside of the
+                digital realm.
               </p>
               <p className="text-green-500">
-                If you ever spot me in the wild, don't hesitate to say hello!
-                Let's grab a cup of Chai and geek out over the latest
-                advancements in front-end development or discuss our favorite
-                obscure programming languages.
+                If you ever spot me in the wild, don&apos;t hesitate to say
+                hello! Let&apos;s grab a cup of Chai and geek out over the
+                latest advancements in front-end development or discuss our
+                favorite obscure programming languages.
               </p>
               <p className="text-green-400">
                 यदि आप कभी मुझे देखें, तो मिलने कहने में हिचकिचाएं नहीं! आइए एक
@@ -52,10 +53,10 @@ const page = () => {
                 हमारी पसंदीदा असामान्य प्रोग्रामिंग भाषाओं पर बात करते हैं।
               </p>
               <p className="text-green-300">
-                ਜੇ ਤੁਸੀਂ ਕਦੇ ਵੀ ਮੇਰੇ ਨੂੰ ਜਿੰਦੇ 'ਚ ਦੇਖੋ, ਤਾਂ ਇਹ ਨਾਨਾ ਨਾ ਕਹੋ! ਆਓ
-                ਇੱਕ ਕੱਪ ਚਾ ਪੀਣਾ ਤੇ ਫਰੰਟ-ਇੰਡ ਡਵੈਲਪਮੈਂਟ ਵਿੱਚ ਹੋਰਾਂ ਦੇ ਨਵੀਨਤਮ
+                ਜੇ ਤੁਸੀਂ ਕਦੇ ਵੀ ਮੇਰੇ ਨੂੰ ਜਿੰਦੇ &apos;ਚ ਦੇਖੋ, ਤਾਂ ਇਹ ਨਾਨਾ ਨਾ ਕਹੋ!
+                ਆਓ ਇੱਕ ਕੱਪ ਚਾ ਪੀਣਾ ਤੇ ਫਰੰਟ-ਇੰਡ ਡਵੈਲਪਮੈਂਟ ਵਿੱਚ ਹੋਰਾਂ ਦੇ ਨਵੀਨਤਮ
                 ਪਰਗਟੀਆਂ ਉੱਤੇ ਜੀਕ ਆਉਣ ਜਾਂ ਸਾਡੀਆਂ ਪਸੰਦੀਦਾ ਅਜੂਬਦੁਨ ਪ੍ਰੋਗਰਾਮਿੰਗ
-                ਭਾਸ਼ਾਵਾਂ 'ਤੇ ਗੱਲਬਾਤ ਕਰੀਏ।
+                ਭਾਸ਼ਾਵਾਂ &apos;ਤੇ ਗੱਲਬਾਤ ਕਰੀਏ।
               </p>
             </div>
           </div>

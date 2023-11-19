@@ -13,7 +13,7 @@ export async function POST(req, res) {
       );
     }
 
-    transporter.sendMail({
+    await transporter.sendMail({
       ...mailOptions,
       subject: data.subject,
       text: "test text",

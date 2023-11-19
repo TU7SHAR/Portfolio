@@ -87,12 +87,51 @@ export default async function Nav() {
                   </ul>
                 </div>
               ) : (
-                <Link
-                  href="/api/auth/signin?callbackUrl=/Details"
-                  className="hover:text-purple-400 duration-300"
-                >
-                  Login
-                </Link>
+                <div className="dropdown dropdown-end  text-[#767678] ">
+                  <label
+                    tabIndex={0}
+                    className=" text-xl hover:text-purple-400 duration-300 "
+                  >
+                    Settings
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className=" bg-purple-800 text-[#adadb1]  text-xl dropdown-content z-[1] menu p-2 shadow rounded-box w-52"
+                  >
+                    <li>
+                      <Link
+                        href="/About"
+                        className="hover:text-white sm:hidden"
+                      >
+                        About
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/Projects"
+                        className="hover:text-white sm:hidden"
+                      >
+                        Projects
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/ContactMe"
+                        className="hover:text-white sm:hidden"
+                      >
+                        Contact Me
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/api/auth/signin?callbackUrl=/Details"
+                        className="hover:text-red-500"
+                      >
+                        LogIn
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
               )}
             </div>
           </nav>

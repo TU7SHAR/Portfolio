@@ -50,11 +50,9 @@ const Page = () => {
       }),
       "content-type": "application/json",
     });
-    if (res.ok) {
+    
       router.push("/ContactMe/Form?form=success");
-    } else {
-      router.push("/ContactMe/Form?form=fail");
-    }
+    
   };
 
   let btnEnabled = !(!mail || !name || !subject || !mailBody);

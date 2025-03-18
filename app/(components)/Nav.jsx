@@ -30,7 +30,7 @@ export default async function Nav() {
                 Projects
               </Link>
               <Link
-                href="/ContactMe"
+                href="https://wa.me/919780400311"
                 className="text-purple-400 hover:text-green-400 duration-300 res "
               >
                 Contact Me
@@ -70,7 +70,7 @@ export default async function Nav() {
                     </li>
                     <li>
                       <Link
-                        href="/ContactMe"
+                        href="https://wa.me/919780400311"
                         className="hover:text-white sm:hidden"
                       >
                         Contact ME
@@ -116,7 +116,7 @@ export default async function Nav() {
                     </li>
                     <li>
                       <Link
-                        href="/ContactMe"
+                        href="https://wa.me/919780400311"
                         className="hover:text-white sm:hidden"
                       >
                         Contact Me

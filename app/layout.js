@@ -59,7 +59,10 @@ export default function RootLayout({ children }) {
           description="Tushar Guatam - This is a Portfolio Website Explore all my ideas, Reviews Projects , language used and tools used. Get in touch with me for more personalized services opionions and everything "
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </head>
+      <!-- Bubbl Widget -->
+<script src="https://coral-app-jbybo.ondigitalocean.app/static/js/embed.js"
+  data-bot-id="13"></script>
+            </head>
       <AuthProvider>
         <body className="flex max-w-[100vw]!important w-[100vw] flex-col bg-[#18181B]">
           <Nav />

@@ -19,6 +19,13 @@ const featured = [
     desc: "Integrates Swiss Ephemeris to compute planetary longitudes & dashas, with a full Razorpay payment-to-delivery pipeline, background PDF generation, and an admin reconciliation dashboard.",
     stack: ["Next.js", "Swiss Ephemeris", "Gemini AI", "Razorpay", "PostgreSQL"],
   },
+  {
+    name: "salesji.com",
+    tag: "AI Telegram Bot Workspace",
+    href: "https://app.salesji.com",
+    desc: "A workspace for building and managing AI-powered Telegram sales bots — deploy conversational agents that engage leads and automate sales conversations right inside Telegram.",
+    stack: ["Telegram Bot API", "AI Agents", "Next.js", "PostgreSQL"],
+  },
 ];
 
 export default function Page() {
@@ -43,9 +50,12 @@ export default function Page() {
           </div>
           <Link
             href="/Projects"
-            className="text-zinc-400 hover:text-violet-300 transition-colors text-base whitespace-nowrap"
+            className="group inline-flex items-center gap-1.5 text-zinc-400 hover:text-violet-300 transition-colors text-base whitespace-nowrap"
           >
-            All projects →
+            All projects
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4 transition-transform group-hover:translate-x-0.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+            </svg>
           </Link>
         </Reveal>
 

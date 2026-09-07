@@ -4,6 +4,7 @@ const tech = [
   "React.js",
   "Next.js",
   "TypeScript",
+  "JavaScript",
   "Three.js",
   "GSAP",
   "Tailwind CSS",
@@ -12,9 +13,13 @@ const tech = [
   "Node.js",
   "PostgreSQL",
   "MongoDB",
+  "MySQL",
   "Redis · Celery",
   "Gemini API",
+  "RAG",
+  "REST APIs",
   "C++",
+  "Git",
 ];
 
 export default function TechMarquee() {

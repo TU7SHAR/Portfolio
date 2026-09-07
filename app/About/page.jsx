@@ -8,26 +8,61 @@ export const metadata = {
     "About Tushar Gautam — frontend-focused full-stack developer building AI-powered SaaS with React, Next.js, Flask and Gemini.",
 };
 
-const skills = [
-  "React.js",
-  "Next.js",
-  "TypeScript",
-  "JavaScript",
-  "Three.js",
-  "GSAP",
-  "Tailwind CSS",
-  "Python",
-  "Flask",
-  "Node.js",
-  "PostgreSQL",
-  "MongoDB",
-  "MySQL",
-  "Redis · Celery",
-  "Gemini API",
-  "C++",
-  "C",
-  "REST APIs",
-  "Git",
+const skillGroups = [
+  {
+    label: "Languages",
+    items: ["JavaScript", "TypeScript", "Python", "C++", "C", "SQL"],
+  },
+  {
+    label: "Frontend",
+    items: [
+      "React.js",
+      "Next.js",
+      "Tailwind CSS",
+      "Three.js",
+      "GSAP",
+      "HTML5",
+      "CSS3",
+    ],
+  },
+  {
+    label: "Backend",
+    items: [
+      "Flask",
+      "Node.js",
+      "REST APIs",
+      "Gunicorn",
+      "Celery",
+      "Systemd / VPS",
+    ],
+  },
+  {
+    label: "Databases & Caching",
+    items: ["PostgreSQL", "MongoDB", "MySQL", "Redis"],
+  },
+  {
+    label: "AI & Integrations",
+    items: [
+      "Gemini API",
+      "RAG / Vector Search",
+      "Prompt Engineering",
+      "Swiss Ephemeris",
+      "Razorpay",
+      "Paddle",
+      "Nodemailer",
+      "NextAuth",
+    ],
+  },
+  {
+    label: "Tools & Practices",
+    items: [
+      "Git & GitHub",
+      "Postman",
+      "GitHub Copilot",
+      "Vercel",
+      "DSA (LeetCode / CodeChef)",
+    ],
+  },
 ];
 
 export default function Page() {
@@ -145,18 +180,36 @@ export default function Page() {
       </section>
 
       {/* Skills */}
-      <Reveal className="mt-28 max-w-3xl">
-        <h2 className="font-bold text-3xl sm:text-4xl mb-4">Expertise</h2>
-        <p className="text-zinc-400 max-w-lg">
-          The stack I use to design and ship products. In no particular order:
+      <Reveal className="mt-28">
+        <p className="text-sm uppercase tracking-[0.3em] text-violet-400 mb-3">
+          Toolbox
         </p>
-        <ul className="flex flex-wrap items-center gap-3 mt-8">
-          {skills.map((s) => (
-            <li key={s} className="glass-btn text-base">
-              {s}
-            </li>
-          ))}
-        </ul>
+        <h2 className="font-bold text-3xl sm:text-4xl mb-4">Skills &amp; Expertise</h2>
+        <p className="text-zinc-400 max-w-xl">
+          The technologies I reach for to design, build, and ship
+          production-grade products — from pixel-perfect frontends to AI-powered
+          backends.
+        </p>
+      </Reveal>
+
+      <Reveal stagger className="mt-10 grid sm:grid-cols-2 gap-5">
+        {skillGroups.map((group) => (
+          <div key={group.label} className="glass-card rounded-2xl p-6">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-violet-300 mb-4">
+              {group.label}
+            </h3>
+            <ul className="flex flex-wrap gap-2.5">
+              {group.items.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-zinc-200 transition-colors hover:border-violet-400/60 hover:text-white"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </Reveal>
 
       <div className="h-24" />

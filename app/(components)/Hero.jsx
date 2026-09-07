@@ -21,27 +21,18 @@ export default function Hero() {
   const root = useRef(null);
 
   useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         defaults: { ease: "power3.out", duration: 0.9 },
       });
       tl.from(".hero-badge", { y: 20, opacity: 0 })
-        .from(
-          ".hero-line",
-          { y: 40, opacity: 0, stagger: 0.12 },
-          "-=0.4"
-        )
+        .from(".hero-line", { y: 40, opacity: 0, stagger: 0.12 }, "-=0.4")
         .from(".hero-sub", { y: 24, opacity: 0 }, "-=0.5")
-        .from(
-          ".hero-cta > *",
-          { y: 18, opacity: 0, stagger: 0.08 },
-          "-=0.4"
-        )
-        .from(
-          ".hero-social",
-          { y: 14, opacity: 0, stagger: 0.06 },
-          "-=0.5"
-        );
+        .from(".hero-cta > *", { y: 18, opacity: 0, stagger: 0.08 }, "-=0.4")
+        .from(".hero-social", { y: 14, opacity: 0, stagger: 0.06 }, "-=0.5");
     }, root);
 
     return () => ctx.revert();
@@ -50,7 +41,7 @@ export default function Hero() {
   return (
     <section
       ref={root}
-      className="relative min-h-[92vh] flex items-center overflow-hidden"
+      className="relative min-h-[90vh] flex items-center justify-center overflow-hidden"
     >
       <ShaderCanvas />
 
@@ -58,8 +49,8 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#08080b] to-transparent z-[1]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#08080b] to-transparent z-[1]" />
 
-      <div className="content-layer w-full max-w-6xl mx-auto lg:px-16 px-6 py-20">
-        <span className="hero-badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-sm text-zinc-300 backdrop-blur-sm">
+      <div className="content-layer w-full max-w-4xl mx-auto px-6 py-24 flex flex-col items-center text-center">
+        <span className="hero-badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-1.5 text-sm text-zinc-300 backdrop-blur-md">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
@@ -67,24 +58,23 @@ export default function Hero() {
           Available for work · Interning @ DrishInfoTech
         </span>
 
-        <h1 className="mt-8 max-w-4xl text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
+        <h1 className="mt-8 text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
           <span className="hero-line block">Full-Stack &amp; AI</span>
           <span className="hero-line block gradient-text text-glow">
             Product Engineer
           </span>
         </h1>
 
-        <p className="hero-sub mt-8 max-w-2xl text-lg text-zinc-400 leading-relaxed">
-          I&apos;m{" "}
-          <span className="text-white font-medium">Tushar Gautam</span> — a
-          frontend-focused developer building performance-driven web apps with{" "}
-          <span className="text-violet-300">React</span> &amp;{" "}
+        <p className="hero-sub mt-7 max-w-2xl text-base sm:text-lg text-zinc-400 leading-relaxed">
+          I&apos;m <span className="text-white font-medium">Tushar Gautam</span>{" "}
+          — a frontend-focused developer building performance-driven web apps
+          with <span className="text-violet-300">React</span> &amp;{" "}
           <span className="text-violet-300">Next.js</span>, and shipping
           production AI products: multi-tenant RAG chatbots and an AI astrology
-          platform powered by Gemini and Swiss Ephemeris.
+          platform powered by Gemini &amp; Swiss Ephemeris.
         </p>
 
-        <div className="hero-cta mt-10 flex flex-wrap items-center gap-4">
+        <div className="hero-cta mt-9 flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/Projects"
             className="glow-btn inline-flex items-center gap-2 rounded-full px-7 py-3 font-medium text-white shadow-lg shadow-violet-900/40 transition-transform hover:scale-[1.03]"
@@ -113,7 +103,7 @@ export default function Hero() {
           </Link>
         </div>
 
-        <ul className="mt-12 flex items-center gap-x-8 text-base">
+        <ul className="mt-10 flex items-center justify-center gap-x-8 text-base">
           {socials.map((s) => (
             <li key={s.label} className="hero-social">
               <Link

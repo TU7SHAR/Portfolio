@@ -17,7 +17,7 @@ export default function Footer() {
           <div className="text-center md:text-left">
             <p className="font-semibold gradient-text text-lg">Tushar Gautam</p>
             <p className="text-sm text-zinc-500 mt-1">
-              Full-Stack &amp; AI Product Engineer · Bharat 🇮🇳
+              Full-Stack &amp; AI Product Engineer · Based in Bharat
             </p>
           </div>
 

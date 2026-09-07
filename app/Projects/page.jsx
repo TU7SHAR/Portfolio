@@ -27,7 +27,7 @@ const flagship = [
     href: "https://bhavishai.in",
     desc: "Integrates Swiss Ephemeris (a C-based library) to compute planetary longitudes and dashas from user details, then uses the Gemini API to produce specialized reports — wrapped in a full commerce pipeline.",
     points: [
-      "Razorpay signature verification → background PDF generation → email dispatch",
+      "Razorpay signature verification, background PDF generation & email dispatch",
       "Admin reconciliation system for failed deliveries",
       "Protected admin panel with revenue dashboards & user-journey analytics",
     ],
@@ -165,7 +165,7 @@ export default function Page() {
           <Image src="/404.png" alt="More" width={56} height={56} className="rounded-xl object-cover" />
           <div>
             <h3 className="font-semibold mb-1">More on GitHub</h3>
-            <p className="text-sm text-zinc-400">Explore the rest of my work →</p>
+            <p className="text-sm text-zinc-400">Explore the rest of my work</p>
           </div>
         </Link>
       </Reveal>

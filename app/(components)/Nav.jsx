@@ -12,14 +12,14 @@ export default function Nav() {
     <header className="sticky top-0 z-50 w-full">
       <div className="border-b border-white/5 bg-[#08080b]/70 backdrop-blur-xl">
         <nav className="max-w-6xl mx-auto flex items-center justify-between md:px-16 px-5 py-4">
-          <Link href="/" className="flex items-center group">
+          <Link href="/" className="flex items-center group shrink-0">
             <Image src="/logo.png" width={26} height={26} alt="logo" />
-            <span className="ml-2 font-semibold gradient-text">
+            <span className="ml-2 font-semibold gradient-text whitespace-nowrap">
               Tushar Gautam
             </span>
           </Link>
 
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-4 sm:gap-8">
             {links.map((l) => (
               <Link
                 key={l.href}

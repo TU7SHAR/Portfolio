@@ -1,7 +1,21 @@
 import { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { Inter, Noto_Sans_Devanagari } from "next/font/google";
 import Loading from "./Loading.jsx";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+});
+
+const notoDevanagari = Noto_Sans_Devanagari({
+  subsets: ["devanagari"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+  variable: "--font-devanagari",
+});
 import Footer from "./(components)/Footer";
 import Nav from "./(components)/Nav";
 import AuthProvider from "./(components)/AuthProvider.jsx";
@@ -52,9 +66,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${notoDevanagari.variable}`}>
       <AuthProvider>
-        <body className="flex min-h-screen w-full flex-col bg-[#08080b]">
+        <body className="flex min-h-screen w-full flex-col bg-[#08080b] font-sans antialiased">
           <Nav />
           <div className="content-layer flex-1">
             <Suspense fallback={<Loading />}>{children}</Suspense>

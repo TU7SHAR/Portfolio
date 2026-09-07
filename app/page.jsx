@@ -19,6 +19,13 @@ const featured = [
     desc: "Integrates Swiss Ephemeris to compute planetary longitudes & dashas, with a full Razorpay payment-to-delivery pipeline, background PDF generation, and an admin reconciliation dashboard.",
     stack: ["Next.js", "Swiss Ephemeris", "Gemini AI", "Razorpay", "PostgreSQL"],
   },
+  {
+    name: "salesji.com",
+    tag: "AI Telegram Bot Workspace",
+    href: "https://app.salesji.com",
+    desc: "A workspace for building and managing AI-powered Telegram sales bots — deploy conversational agents that engage leads and automate sales conversations right inside Telegram.",
+    stack: ["Telegram Bot API", "AI Agents", "Next.js", "PostgreSQL"],
+  },
 ];
 
 export default function Page() {

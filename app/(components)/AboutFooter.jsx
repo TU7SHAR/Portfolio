@@ -1,176 +1,86 @@
-import Image from "next/image";
-import Link from "next/link";
+import Reveal from "./Reveal.jsx";
 
-const AboutFooter = () => {
+const timeline = [
+  {
+    title: "B.Tech · Computer Science & Engineering",
+    org: "Rayat Bahra University, Mohali",
+    period: "2022 — Expected Jul 2026 · CGPA 8.0",
+    color: "#54EFB8",
+    note: "Core CS foundations, DSA (LeetCode / CodeChef), and building production SaaS on the side.",
+    done: false,
+  },
+  {
+    title: "Full-Stack & AI Development",
+    org: "Self-driven + Internship",
+    period: "2023 — Present",
+    color: "#8b27da",
+    note: "Shipped multi-tenant RAG chatbots and an AI astrology platform. Currently interning at DrishInfoTech.",
+    done: true,
+  },
+  {
+    title: "Foundations in Programming",
+    org: "C, C++ & Web Fundamentals",
+    period: "2021 — 2022",
+    color: "#77CCFD",
+    note: "Picked up systems thinking with C/C++ and the fundamentals of the modern web.",
+    done: true,
+  },
+  {
+    title: "CBSE Schooling",
+    org: "Higher Secondary",
+    period: "2020",
+    color: "#FF916B",
+    note: "Set goals ridiculously high — and kept climbing toward them.",
+    done: true,
+  },
+];
+
+export default function AboutFooter() {
   return (
-    <>
-      <section className="max-w-[100vw] mt-32">
-        <div>
-          <h2 className="font-semibold text-4xl mb-4">
-            Educational Experience
-          </h2>
-        </div>
-        <div>
-          <div className="flex items-start lg:gap-x-6 gap-x-4 max-w-2xl relative before:absolute mt-4 before:bottom-0 before:top-[4.5rem] before:left-7 before:w-[1px] before:h-[calc(100%-50px)] before:bg-zinc-800">
-            <Link
-              href="/"
-              rel="noreferrer noopener"
-              className="min-h-[60px] min-w-[60px] rounded-md overflow-clip relative"
-            >
-              <Image
-                src="/orange.png"
-                className="object-cover"
-                alt="img"
-                fill
-              />
-            </Link>
-            <div className="flex flex-col items-start">
-              <h3 className="text-xl font-bold flex items-center ">
-                CBSE Schooling{" "}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-7 h-7 text-[#FF916B] ml-1"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
-                  />
-                </svg>
-              </h3>
-              <p>Student</p>
-              <small className="text-sm text-zinc-500 mt-2 tracking-widest uppercase">
-                2004-03-01 - 2020-04-01
-              </small>
-              <p className="text-base text-zinc-400 my-4">
-                If you set your goals ridiculously high and it&apos;s a failure,
-                you will fail above everyone else
-              </p>
-            </div>
-          </div>
-        </div>{" "}
-        <div>
-          <div className="flex items-start lg:gap-x-6 gap-x-4 max-w-2xl relative before:absolute before:bottom-0 before:top-[4.5rem] before:left-7 before:w-[1px] before:h-[calc(100%-50px)] before:bg-zinc-800">
-            <Link
-              href="/"
-              rel="noreferrer noopener"
-              className="min-h-[60px] min-w-[60px] rounded-md overflow-clip relative"
-            >
-              <Image src="/red.png" className="object-cover" alt="img" fill />
-            </Link>
-            <div className="flex flex-col items-start">
-              <h3 className="text-xl font-bold flex items-center">
-                Corona Period{" "}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-7 h-7 ml-1 text-[#A52A2B]"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </h3>
-              <p>Hard Time</p>
-              <small className="text-sm text-zinc-500 mt-2 tracking-widest uppercase">
-                2020-04-01 - 2021-10-01
-              </small>
-              <p className="text-base text-zinc-400 my-4">
-                In life&apos;s dance, hardships are steps that teach. Approach
-                challenges with the playfulness of a child, for even in the
-                toughest moments, and uncover most valuable lessons.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="">
-          <div className="flex items-start lg:gap-x-6 gap-x-4 max-w-2xl relative before:absolute before:bottom-0 before:top-[4.5rem] before:left-7 before:w-[1px] before:h-[calc(100%-50px)] before:bg-zinc-800">
-            <Link
-              href="/"
-              rel="noreferrer noopener"
-              className="min-h-[60px] min-w-[60px] rounded-md overflow-clip relative"
-            >
-              <Image src="/blue.png" className="object-cover" alt="img" fill />
-            </Link>
-            <div className="flex flex-col items-start">
-              <h3 className="text-xl font-bold flex items-center">
-                Diploma{" "}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-7 h-7 text-[#77CCFD] ml-1"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
-                  />
-                </svg>
-              </h3>
-              <p>Basic Programming Languages</p>
-              <small className="text-sm text-zinc-500 mt-2 tracking-widest uppercase">
-                2021-10-01 - 2022-05-01
-              </small>
-              <p className="text-base text-zinc-400 my-4">
-                Don&apos;t be distracted by criticism. Remember — the only taste
-                of success some people get is to take a bite out of you
-              </p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div className="flex items-start lg:gap-x-6 gap-x-4 max-w-2xl relative before:absolute before:bottom-0 before:top-[4.5rem] before:left-7 before:w-[1px] before:h-[calc(100%-50px)] before:bg-zinc-800">
-            <Link
-              href="/"
-              rel="noreferrer noopener"
-              className="min-h-[60px] min-w-[60px] rounded-md overflow-clip relative"
-            >
-              <Image src="/green.png" className="object-cover" alt="img" fill />
-            </Link>
-            <div className="flex flex-col items-start">
-              <h3 className="text-xl font-bold flex items-center">
-                Degree
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-7 h-7 text-[#54EFB8] ml-1"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
-                  />
-                </svg>
-              </h3>
-              <p>Computer Science</p>
-              <small className="text-sm text-zinc-500 mt-2 tracking-widest uppercase">
-                2020-12-12
-              </small>
-              <p className="text-base text-zinc-400 my-4">
-                Many of life&apos;s failures are people who did not realize how
-                close they were to success when they gave up
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-};
+    <section className="content-layer max-w-3xl mx-auto lg:px-16 px-6 mt-32">
+      <Reveal>
+        <p className="text-sm uppercase tracking-[0.3em] text-violet-400 mb-3">
+          The journey
+        </p>
+        <h2 className="font-bold text-3xl sm:text-4xl mb-12">
+          Education &amp; Experience
+        </h2>
+      </Reveal>
 
-export default AboutFooter;
+      <Reveal stagger className="relative">
+        {timeline.map((item, i) => (
+          <div
+            key={i}
+            className="relative flex items-start gap-x-6 pb-12 last:pb-0"
+          >
+            {/* connector line */}
+            {i !== timeline.length - 1 && (
+              <span className="absolute left-[11px] top-7 h-full w-px bg-gradient-to-b from-white/20 to-transparent" />
+            )}
+            {/* node */}
+            <span
+              className="mt-1.5 h-6 w-6 shrink-0 rounded-full border-2 flex items-center justify-center"
+              style={{ borderColor: item.color }}
+            >
+              <span
+                className="h-2 w-2 rounded-full"
+                style={{ background: item.color }}
+              />
+            </span>
+
+            <div className="flex flex-col">
+              <h3 className="text-lg font-semibold text-white">
+                {item.title}
+              </h3>
+              <p className="text-zinc-300">{item.org}</p>
+              <small className="mt-1 text-xs tracking-widest uppercase text-zinc-500">
+                {item.period}
+              </small>
+              <p className="mt-3 text-zinc-400 max-w-xl">{item.note}</p>
+            </div>
+          </div>
+        ))}
+      </Reveal>
+    </section>
+  );
+}

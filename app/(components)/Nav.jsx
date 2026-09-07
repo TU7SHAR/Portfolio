@@ -1,142 +1,45 @@
 import Link from "next/link";
-import { getServerSession } from "next-auth";
-import { options } from "../api/auth/[...nextauth]/options.js";
-import Image from "next/image.js";
-import "../globals.css";
+import Image from "next/image";
 
-export default async function Nav() {
-  const session = await getServerSession(options);
-  console.log(session ? session.user : "No User");
+const links = [
+  { href: "/About", label: "About" },
+  { href: "/Projects", label: "Projects" },
+  { href: "/ContactMe", label: "Contact" },
+];
+
+export default function Nav() {
   return (
-    <>
-      <header className="  flex-0  w-[100vw] mb-20 md:mb-30">
-        <div className=" max-h-[10vh] py-6 md:px-16  px-5 border-b  border-zinc-800 ">
-          <nav className=" mx-auto flex items-center justify-between w-full">
-            <Link href="/" className="flex">
-              <Image src="/logo.png" width={25} height={25} alt="logo" />
-              <span className="text-purple-400 ml-1">Tushar Gautam</span>
+    <header className="sticky top-0 z-50 w-full">
+      <div className="border-b border-white/5 bg-[#08080b]/70 backdrop-blur-xl">
+        <nav className="max-w-6xl mx-auto flex items-center justify-between md:px-16 px-5 py-4">
+          <Link href="/" className="flex items-center group">
+            <Image src="/logo.png" width={26} height={26} alt="logo" />
+            <span className="ml-2 font-semibold gradient-text">
+              Tushar Gautam
+            </span>
+          </Link>
+
+          <div className="flex items-center gap-8">
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="text-base text-zinc-400 hover:text-white transition-colors duration-300"
+              >
+                {l.label}
+              </Link>
+            ))}
+            <Link
+              href="/resume.pdf"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="hidden sm:inline-flex items-center rounded-full border border-white/15 bg-white/[0.04] px-4 py-1.5 text-sm text-zinc-200 hover:border-violet-400/60 hover:text-white transition-colors"
+            >
+              Resume
             </Link>
-            <div className="flex gap-10 text-[#767678] flex-col sm:flex-row ">
-              <Link
-                href="/About"
-                className="hover:text-purple-400 duration-300  res"
-              >
-                About
-              </Link>
-              <Link
-                href="/Projects"
-                className="hover:text-purple-400 duration-300 res"
-              >
-                Projects
-              </Link>
-              <Link
-                href="https://wa.me/919780400311"
-                className="text-purple-400 hover:text-green-400 duration-300 res "
-              >
-                Contact Me
-              </Link>
-              {session ? (
-                <div className="dropdown dropdown-end  text-[#767678] ">
-                  <label
-                    tabIndex={0}
-                    className=" text-xl hover:text-purple-400 duration-300 "
-                  >
-                    Settings
-                  </label>
-                  <ul
-                    tabIndex={0}
-                    className=" bg-purple-800 text-[#adadb1]  text-xl dropdown-content z-[1] menu p-2 shadow rounded-box w-52"
-                  >
-                    <li>
-                      <Link href="/Details" className="hover:text-white">
-                        Account Details
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/About"
-                        className="hover:text-white sm:hidden"
-                      >
-                        About
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/Projects"
-                        className="hover:text-white sm:hidden"
-                      >
-                        Projects
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="https://wa.me/919780400311"
-                        className="hover:text-white sm:hidden"
-                      >
-                        Contact ME
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/api/auth/signout?callbackUrl=/"
-                        className="hover:text-red-500"
-                      >
-                        LogOut
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              ) : (
-                <div className="dropdown dropdown-end  text-[#767678] ">
-                  <label
-                    tabIndex={0}
-                    className=" text-xl hover:text-purple-400 duration-300 "
-                  >
-                    Settings
-                  </label>
-                  <ul
-                    tabIndex={0}
-                    className=" bg-purple-800 text-[#adadb1]  text-xl dropdown-content z-[1] menu p-2 shadow rounded-box w-52"
-                  >
-                    <li>
-                      <Link
-                        href="/About"
-                        className="hover:text-white sm:hidden"
-                      >
-                        About
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/Projects"
-                        className="hover:text-white sm:hidden"
-                      >
-                        Projects
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="https://wa.me/919780400311"
-                        className="hover:text-white sm:hidden"
-                      >
-                        Contact Me
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/api/auth/signin?callbackUrl=/Details"
-                        className="hover:text-red-500"
-                      >
-                        LogIn
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
-          </nav>
-        </div>
-      </header>
-    </>
+          </div>
+        </nav>
+      </div>
+    </header>
   );
 }

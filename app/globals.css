@@ -29,15 +29,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-@layer base {
-  h1 {
-    @apply font-bold text-5xl;
-  }
-  a {
-    @apply text-xl;
-  }
-}
-
 @media screen and (max-width: 638px) {
   .res {
     @apply hidden;
@@ -85,7 +76,7 @@ body {
 /* Premium utilities                                                   */
 /* ------------------------------------------------------------------ */
 .glass-btn {
-  @apply bg-white/[0.04] border border-white/10 hover:border-violet-400/60 rounded-md px-2 py-1 backdrop-blur-sm transition-colors duration-300;
+  @apply bg-white/[0.06] border border-white/20 text-zinc-200 hover:border-violet-400/70 hover:text-white rounded-lg px-4 py-2 backdrop-blur-sm transition-colors duration-300;
 }
 
 .glass-card {
@@ -105,6 +96,10 @@ body {
   transform: translateY(-4px);
   border-color: rgba(139, 39, 218, 0.5);
   box-shadow: 0 20px 60px -20px rgba(139, 39, 218, 0.45);
+}
+
+.font-deva {
+  font-family: var(--font-devanagari), var(--font-sans), sans-serif;
 }
 
 .gradient-text {
@@ -155,10 +150,18 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* entrance animation used by GSAP fallback / non-JS */
-.reveal-init {
+/* Fail-safe scroll reveal: base (no class) is fully visible.
+   .reveal is only added by JS once it's confirmed running. */
+.reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @keyframes float-soft {

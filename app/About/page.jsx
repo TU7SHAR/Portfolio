@@ -40,7 +40,8 @@ export default function Page() {
           </p>
           <h1 className="lg:text-5xl text-4xl lg:leading-tight font-bold mb-8">
             I&apos;m <span className="gradient-text">Tushar</span>. I live in
-            Bharat (<span className="text-violet-300">भारत</span>), where I build
+            Bharat (<span className="text-violet-300 font-deva">भारत</span>),
+            where I build
             the <span className="gradient-text">future</span> of the web.
           </h1>
 
@@ -74,7 +75,7 @@ export default function Page() {
               Let&apos;s grab a cup of chai and geek out over the latest in
               front-end, AI, and everything in between.
             </p>
-            <p className="text-emerald-300/90">
+            <p className="text-emerald-300/90 font-deva">
               यदि आप कभी मुझे देखें, तो मिलने में हिचकिचाएं नहीं! आइए एक कप चाय
               लेते हैं और नई तकनीकों पर बात करते हैं।
             </p>

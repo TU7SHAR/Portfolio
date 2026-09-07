@@ -1,21 +1,18 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 /**
- * Reveals children on scroll with a soft rise + fade.
- * `stagger` animates direct children instead of the wrapper itself.
+ * Fail-safe scroll reveal.
+ *
+ * Content is ALWAYS rendered visible by default (no opacity:0 in the base
+ * state that could get stuck). We only *enhance* with a rise+fade when the
+ * element scrolls into view, via IntersectionObserver + a CSS class.
+ * If JS fails or the observer never fires, content simply shows normally.
  */
 export default function Reveal({
   children,
   className = "",
-  y = 32,
   delay = 0,
   stagger = false,
   as: Tag = "div",
@@ -30,31 +27,43 @@ export default function Reveal({
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    const targets = stagger ? el.children : el;
+    const targets = stagger ? Array.from(el.children) : [el];
 
-    if (reduce) {
-      gsap.set(targets, { opacity: 1, y: 0 });
+    if (reduce || typeof IntersectionObserver === "undefined") {
+      targets.forEach((t) => t.classList.add("reveal-in"));
       return;
     }
 
-    const ctx = gsap.context(() => {
-      gsap.from(targets, {
-        opacity: 0,
-        y,
-        duration: 0.9,
-        delay,
-        ease: "power3.out",
-        stagger: stagger ? 0.1 : 0,
-        scrollTrigger: {
-          trigger: el,
-          start: "top 85%",
-          toggleActions: "play none none none",
-        },
-      });
-    }, el);
+    // set the pre-animation state now (JS is confirmed running)
+    targets.forEach((t, i) => {
+      t.classList.add("reveal");
+      t.style.transitionDelay = `${delay + (stagger ? i * 0.09 : 0)}s`;
+    });
 
-    return () => ctx.revert();
-  }, [y, delay, stagger]);
+    const io = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal-in");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+    );
+
+    targets.forEach((t) => io.observe(t));
+
+    // safety net: if anything is still hidden after 1.2s, force it visible
+    const safety = setTimeout(() => {
+      targets.forEach((t) => t.classList.add("reveal-in"));
+    }, 1200);
+
+    return () => {
+      io.disconnect();
+      clearTimeout(safety);
+    };
+  }, [delay, stagger]);
 
   return (
     <Tag ref={ref} className={className}>

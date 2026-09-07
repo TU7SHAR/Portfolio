@@ -37,7 +37,7 @@ const timeline = [
 
 export default function AboutFooter() {
   return (
-    <section className="content-layer max-w-3xl mx-auto lg:px-16 px-6 mt-32">
+    <section className="content-layer max-w-6xl mx-auto lg:px-16 px-6 mt-32 mb-8">
       <Reveal>
         <p className="text-sm uppercase tracking-[0.3em] text-violet-400 mb-3">
           The journey
@@ -47,7 +47,7 @@ export default function AboutFooter() {
         </h2>
       </Reveal>
 
-      <Reveal stagger className="relative">
+      <Reveal stagger className="relative max-w-3xl">
         {timeline.map((item, i) => (
           <div
             key={i}

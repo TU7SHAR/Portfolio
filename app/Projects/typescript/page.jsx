@@ -7,42 +7,42 @@ export default async function Project() {
       <main className="max-w-6xl mx-auto lg:px-16 px-8 text-white">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-start justify-between mb-4">
-            <h1 className="font-bold lg:text-5xl text-3xl lg:leading-tight mb-4">
+            <h1 className="font-display text-4xl sm:text-5xl mb-4">
               TypeScript
             </h1>
 
             <Link
               href="https://www.typescriptlang.org/"
               rel="noreferrer noopener"
-              className="bg-[#1d1d20] text-white hover:border-zinc-700 border border-transparent rounded-md px-4 py-2"
+              className="btn-ghost inline-flex items-center px-4 py-2 text-sm"
             >
               Explore
             </Link>
           </div>
           <div className="flex gap-x-8">
             <Image
-              className="rounded-2xl border border-zinc-800"
+              className="rounded-md border border-[color:rgba(244,239,230,0.1)]"
               width={200}
               height={90}
               src="/typescript.png"
               alt="img"
             />
             <Image
-              className="rounded-2xl border border-zinc-800"
+              className="rounded-md border border-[color:rgba(244,239,230,0.1)]"
               width={200}
               height={90}
               src="/typescript.png"
               alt="img"
             />
             <Image
-              className="rounded-2xl border border-zinc-800"
+              className="rounded-md border border-[color:rgba(244,239,230,0.1)]"
               width={200}
               height={90}
               src="/typescript.png"
               alt="img"
             />
           </div>
-          <div className="flex flex-col gap-y-6 mt-8 leading-7 text-zinc-400">
+          <div className="flex flex-col gap-y-6 mt-8 leading-7 text-[color:var(--ink-soft)]">
             <p>
               TypeScript is a free and open-source high-level programming
               language developed by Microsoft that adds static typing with
@@ -70,7 +70,7 @@ export default async function Project() {
               modules are also available, allowing development of Node.js
               programs within TypeScrip
             </p>
-            <pre className="text-yellow-400">
+            <pre className="text-[color:var(--amber)]">
               *All Definations/Introductions Have been sourced from Original
               Sites!!
             </pre>

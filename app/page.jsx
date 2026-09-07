@@ -9,14 +9,14 @@ const featured = [
     name: "bubbl.ooo",
     tag: "RAG Chatbot SaaS",
     href: "https://app.bubbl.ooo",
-    desc: "Multi-tenant platform where scraped web content is auto-vectorized into Gemini FileSearch stores, letting businesses deploy context-aware AI agents with persistent conversations and lead capture.",
+    desc: "A multi-tenant platform where scraped web content is auto-vectorized into Gemini FileSearch stores, letting businesses deploy context-aware AI agents with persistent conversations and lead capture.",
     stack: ["Flask", "Gemini API", "Redis · Celery", "PostgreSQL", "Paddle"],
   },
   {
     name: "bhavishai.in",
     tag: "AI Astrology",
     href: "https://bhavishai.in",
-    desc: "Integrates Swiss Ephemeris to compute planetary longitudes & dashas, with a full Razorpay payment-to-delivery pipeline, background PDF generation, and an admin reconciliation dashboard.",
+    desc: "Swiss Ephemeris computes planetary longitudes & dashas, wrapped in a full Razorpay payment-to-delivery pipeline with background PDF generation and an admin reconciliation dashboard.",
     stack: ["Next.js", "Swiss Ephemeris", "Gemini AI", "Razorpay", "PostgreSQL"],
   },
   {
@@ -30,27 +30,25 @@ const featured = [
 
 export default function Page() {
   return (
-    <main className="text-white">
+    <main>
       <Hero />
 
-      <div className="mt-4 mb-24">
+      <div className="mt-8 mb-24">
         <TechMarquee />
       </div>
 
-      {/* Featured work */}
-      <section className="content-layer max-w-6xl mx-auto lg:px-16 px-6 mb-28">
-        <Reveal className="flex items-end justify-between mb-12 flex-wrap gap-4">
+      {/* Selected work — editorial numbered list */}
+      <section className="content-layer max-w-6xl mx-auto px-6 md:px-10 mb-28">
+        <Reveal className="flex items-end justify-between mb-4 flex-wrap gap-4">
           <div>
-            <p className="text-sm uppercase tracking-[0.3em] text-violet-400 mb-3">
-              Selected work
-            </p>
-            <h2 className="font-bold text-3xl sm:text-4xl max-w-xl">
-              Production products I&apos;ve shipped
+            <p className="eyebrow mb-4">Selected work</p>
+            <h2 className="font-display text-4xl sm:text-5xl">
+              Products I&apos;ve shipped
             </h2>
           </div>
           <Link
             href="/Projects"
-            className="group inline-flex items-center gap-1.5 text-zinc-400 hover:text-violet-300 transition-colors text-base whitespace-nowrap"
+            className="group inline-flex items-center gap-1.5 text-sm text-[color:var(--ink-soft)] hover:text-[color:var(--amber)] transition-colors whitespace-nowrap"
           >
             All projects
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4 transition-transform group-hover:translate-x-0.5">
@@ -59,48 +57,54 @@ export default function Page() {
           </Link>
         </Reveal>
 
-        <Reveal stagger className="grid md:grid-cols-2 gap-6">
-          {featured.map((p) => (
+        <div className="rule mb-2" />
+
+        <Reveal stagger>
+          {featured.map((p, i) => (
             <Link
               key={p.name}
               href={p.href}
               target="_blank"
               rel="noreferrer noopener"
-              className="glass-card group rounded-2xl p-7 flex flex-col"
+              className="group grid md:grid-cols-[auto_1fr_auto] gap-x-8 gap-y-4 items-start border-b border-[color:rgba(244,239,230,0.08)] py-9 transition-colors hover:border-[color:rgba(224,160,73,0.4)]"
             >
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs uppercase tracking-widest text-violet-300">
-                  {p.tag}
-                </span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="h-5 w-5 text-zinc-500 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-violet-300"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M7 17 17 7M7 7h10v10"
-                  />
-                </svg>
+              <span className="font-display text-2xl text-[color:var(--ink-mute)] group-hover:text-[color:var(--amber)] transition-colors">
+                0{i + 1}
+              </span>
+
+              <div>
+                <div className="flex items-baseline gap-3 flex-wrap">
+                  <h3 className="font-display text-3xl sm:text-4xl group-hover:text-[color:var(--amber)] transition-colors">
+                    {p.name}
+                  </h3>
+                  <span className="eyebrow">{p.tag}</span>
+                </div>
+                <p className="mt-3 max-w-2xl text-[color:var(--ink-soft)] leading-relaxed">
+                  {p.desc}
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {p.stack.map((s) => (
+                    <span key={s} className="chip">
+                      {s}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <h3 className="text-2xl font-bold mb-3 gradient-text w-fit">
-                {p.name}
-              </h3>
-              <p className="text-zinc-400 leading-relaxed flex-1">{p.desc}</p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {p.stack.map((s) => (
-                  <span
-                    key={s}
-                    className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-zinc-300"
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                className="hidden md:block h-7 w-7 text-[color:var(--ink-mute)] transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[color:var(--amber)]"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M7 17 17 7M7 7h10v10"
+                />
+              </svg>
             </Link>
           ))}
         </Reveal>

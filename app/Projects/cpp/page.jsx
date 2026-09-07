@@ -7,14 +7,14 @@ export default async function Project() {
       <main className="max-w-6xl mx-auto lg:px-16 px-8 text-white">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-start justify-between mb-4">
-            <h1 className="font-bold lg:text-5xl text-3xl lg:leading-tight mb-4">
+            <h1 className="font-display text-4xl sm:text-5xl mb-4">
               JavaScript
             </h1>
 
             <Link
               href="https://cplusplus.com/"
               rel="noreferrer noopener"
-              className="bg-[#1d1d20] text-white hover:border-zinc-700 border border-transparent rounded-md px-4 py-2"
+              className="btn-ghost inline-flex items-center px-4 py-2 text-sm"
             >
               Explore
             </Link>
@@ -42,7 +42,7 @@ export default async function Project() {
               alt="img"
             />
           </div>
-          <div className="flex flex-col gap-y-6 mt-8 leading-7 text-zinc-400">
+          <div className="flex flex-col gap-y-6 mt-8 leading-7 text-[color:var(--ink-soft)]">
             <p>
               C++ was designed with systems programming and embedded,
               resource-constrained software and large systems in mind, with
@@ -70,7 +70,7 @@ export default async function Project() {
               three-year release schedule with C++23 as the next planned
               standard
             </p>
-            <pre className="text-yellow-400">
+            <pre className="text-[color:var(--amber)]">
               *All Definations/Introductions Have been sourced from Original
               Sites!!
             </pre>

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/react";
-import { Inter, Noto_Sans_Devanagari } from "next/font/google";
+import { Inter, Fraunces, Noto_Sans_Devanagari } from "next/font/google";
 import Loading from "./Loading.jsx";
 import "./globals.css";
 
@@ -8,6 +8,14 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
 });
 
 const notoDevanagari = Noto_Sans_Devanagari({
@@ -66,9 +74,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${notoDevanagari.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${fraunces.variable} ${notoDevanagari.variable}`}
+    >
       <AuthProvider>
-        <body className="flex min-h-screen w-full flex-col bg-[#08080b] font-sans antialiased">
+        <body className="flex min-h-screen w-full flex-col bg-[#0c0b09] font-sans antialiased">
+          {/* ambient warm backdrop + film grain (replaces the shader) */}
+          <div className="ambient" aria-hidden="true" />
+          <div className="grain" aria-hidden="true" />
           <Nav />
           <div className="content-layer flex-1">
             <Suspense fallback={<Loading />}>{children}</Suspense>

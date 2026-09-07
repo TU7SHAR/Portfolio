@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import Loading from "./Loading.jsx";
 import "./globals.css";
 import Footer from "./(components)/Footer";
@@ -52,22 +53,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <meta
-          title="Tushar Gautam - Portfolio | Web Developer | Full Stack Developer| React Developer | Next.js Developer |Backend Developer"
-          description="Tushar Guatam - This is a Portfolio Website Explore all my ideas, Reviews Projects , language used and tools used. Get in touch with me for more personalized services opionions and everything "
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     
-            </head>
       <AuthProvider>
-        <body className="flex max-w-[100vw]!important w-[100vw] flex-col bg-[#18181B]">
+        <body className="flex min-h-screen w-full flex-col bg-[#08080b]">
           <Nav />
-          <Suspense fallback={<Loading />}>
-            {children}
-            <Analytics />
-          </Suspense>
+          <div className="content-layer flex-1">
+            <Suspense fallback={<Loading />}>{children}</Suspense>
+          </div>
           <Footer />
+          <Analytics />
         </body>
       </AuthProvider>
     </html>

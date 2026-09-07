@@ -1,23 +1,18 @@
 const siteMetaData = {
-  title:
-    "Tushar Portfolio, Next.js Portfolio and Blog Website with Tailwind Css and Daisy Ui ",
+  title: "Tushar Gautam — Full-Stack & AI Product Engineer",
   author: "Tushar Gautam",
-  headerTitle: "Next.js Portfolio",
+  headerTitle: "Tushar Gautam",
   description:
-    "A Portfolio created with Next.js, Tailwind Css and DaisyUi. A outstanding portfolio made by Tushar Gautam A Full Stack Web Developer , Web Designer , Technical Writer and Programmer ",
+    "Portfolio of Tushar Gautam — a frontend-focused full-stack developer building performance-driven web apps with React & Next.js, and shipping production AI products (RAG chatbots, AI astrology) with Flask, Gemini, and PostgreSQL.",
   language: "en-us",
-  theme: "system",
-  siteUrl: "https://tusharportfolio.vercel.app",
+  theme: "dark",
+  siteUrl: "https://tushargautam.software",
   siteLogo: "/logo.png",
   socialBanner: "/Banner.png",
   altBanner: "/Banner-alt.png",
-  email: "gautams4mail@gmail.com",
+  email: "gautams4work@gmail.com",
   github: "https://github.com/TU7SHAR",
-  twitter: "https://twitter.com/TU7SHAR",
-  facebook: "https://facebook.com/ArmaanGautam",
-  youtube: "https://github.com/tushargautam",
-  linkedin: "https://linkedin.com/TU7SHAR",
-  dribble: "https://dribble.com/",
+  linkedin: "https://www.linkedin.com/in/tushar-gautam-73a678314/",
   locale: "en-us",
 };
 

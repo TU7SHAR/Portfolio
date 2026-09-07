@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "../(components)/Reveal.jsx";
+import Tilt from "../(components)/Tilt.jsx";
 
 export const metadata = {
   title: "About",
@@ -171,16 +172,18 @@ export default function Page() {
 
       <Reveal stagger className="mt-10 grid sm:grid-cols-2 gap-4">
         {skillGroups.map((group) => (
-          <div key={group.label} className="card p-6">
-            <h3 className="eyebrow mb-4">{group.label}</h3>
-            <ul className="flex flex-wrap gap-2.5">
-              {group.items.map((item) => (
-                <li key={item} className="chip">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Tilt key={group.label} max={6}>
+            <div className="card p-6 h-full">
+              <h3 className="eyebrow mb-4">{group.label}</h3>
+              <ul className="flex flex-wrap gap-2.5">
+                {group.items.map((item) => (
+                  <li key={item} className="chip">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Tilt>
         ))}
       </Reveal>
 

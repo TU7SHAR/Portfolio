@@ -98,6 +98,11 @@ pdf.multi_cell(0, 5, "bhavishai.in - AI Astrology  |  Next.js, Swiss Ephemeris, 
 bullet(pdf, "Integrated Swiss Ephemeris (C-based library) to compute planetary longitudes and dashas from user details (DOB, POB), and used the Gemini API to produce specialized reports.")
 bullet(pdf, "Implemented a payment-to-delivery pipeline with Razorpay signature verification, background PDF generation, email dispatch, and an admin reconciliation system for failed deliveries.")
 bullet(pdf, "Built a protected admin panel with revenue dashboards, user journey analytics, and automated drip email sequences triggered by report completion status.")
+pdf.ln(2)
+pdf.set_font("Helvetica", "B", 10.5)
+pdf.set_text_color(*DARK)
+pdf.multi_cell(0, 5, "app.salesji.com - AI Telegram Bot Workspace  |  Telegram Bot API, AI Agents, Next.js, PostgreSQL", new_x="LMARGIN", new_y="NEXT")
+bullet(pdf, "Built a workspace for creating and managing AI-powered Telegram sales bots, letting businesses deploy conversational agents that engage leads and automate sales conversations directly inside Telegram.")
 
 # Education
 section(pdf, "Education")

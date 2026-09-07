@@ -33,6 +33,18 @@ const flagship = [
     ],
     stack: ["Next.js", "Swiss Ephemeris", "Gemini AI", "Razorpay", "PostgreSQL"],
   },
+  {
+    name: "salesji.com",
+    tag: "AI Telegram Bot Workspace",
+    href: "https://app.salesji.com",
+    desc: "A workspace for building and managing AI-powered Telegram sales bots, letting businesses deploy conversational agents that engage leads and automate sales conversations directly inside Telegram.",
+    points: [
+      "Configure and deploy AI sales agents to Telegram from a single workspace",
+      "Automates lead engagement and sales conversations end-to-end",
+      "Built as a multi-tenant SaaS product",
+    ],
+    stack: ["Telegram Bot API", "AI Agents", "Next.js", "PostgreSQL"],
+  },
 ];
 
 const projects = [

@@ -1,30 +1,34 @@
 import Link from "next/link";
-import Image from "next/image";
 
 const links = [
   { href: "/About", label: "About" },
-  { href: "/Projects", label: "Projects" },
+  { href: "/Projects", label: "Work" },
   { href: "/ContactMe", label: "Contact" },
 ];
 
 export default function Nav() {
   return (
     <header className="sticky top-0 z-50 w-full">
-      <div className="border-b border-white/5 bg-[#08080b]/70 backdrop-blur-xl">
-        <nav className="max-w-6xl mx-auto flex items-center justify-between md:px-16 px-5 py-4">
-          <Link href="/" className="flex items-center group shrink-0">
-            <Image src="/logo.png" width={26} height={26} alt="logo" />
-            <span className="ml-2 font-semibold gradient-text whitespace-nowrap">
+      <div className="border-b border-[color:rgba(244,239,230,0.08)] bg-[#0c0b09]/80 backdrop-blur-xl">
+        <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 md:px-10 py-4">
+          <Link
+            href="/"
+            className="flex items-center gap-2 shrink-0 group"
+          >
+            <span className="grid h-7 w-7 place-items-center rounded-full border border-[color:var(--amber)]/60 font-display text-sm text-[color:var(--amber)]">
+              T
+            </span>
+            <span className="font-display text-lg whitespace-nowrap group-hover:text-[color:var(--amber)] transition-colors">
               Tushar Gautam
             </span>
           </Link>
 
-          <div className="flex items-center gap-4 sm:gap-8">
+          <div className="flex items-center gap-5 sm:gap-8">
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-base text-zinc-400 hover:text-white transition-colors duration-300"
+                className="text-sm tracking-wide text-[color:var(--ink-soft)] hover:text-[color:var(--amber)] transition-colors"
               >
                 {l.label}
               </Link>
@@ -33,9 +37,9 @@ export default function Nav() {
               href="/resume.pdf"
               target="_blank"
               rel="noreferrer noopener"
-              className="hidden sm:inline-flex items-center rounded-full border border-white/15 bg-white/[0.04] px-4 py-1.5 text-sm text-zinc-200 hover:border-violet-400/60 hover:text-white transition-colors"
+              className="btn-ghost hidden sm:inline-flex items-center px-4 py-1.5 text-sm"
             >
-              Resume
+              Résumé
             </Link>
           </div>
         </nav>

@@ -2,81 +2,58 @@ import Reveal from "./Reveal.jsx";
 
 const timeline = [
   {
+    year: "2022—26",
     title: "B.Tech · Computer Science & Engineering",
-    org: "Rayat Bahra University, Mohali",
-    period: "2022 — Expected Jul 2026 · CGPA 8.0",
-    color: "#54EFB8",
+    org: "Rayat Bahra University, Mohali · CGPA 8.0",
     note: "Core CS foundations, DSA (LeetCode / CodeChef), and building production SaaS on the side.",
-    done: false,
   },
   {
+    year: "2023—",
     title: "Full-Stack & AI Development",
-    org: "Self-driven + Internship",
-    period: "2023 — Present",
-    color: "#8b27da",
-    note: "Shipped multi-tenant RAG chatbots and an AI astrology platform. Currently interning at DrishInfoTech.",
-    done: true,
+    org: "Self-driven · Interning at DrishInfoTech",
+    note: "Shipped multi-tenant RAG chatbots, an AI astrology platform, and Telegram sales agents.",
   },
   {
+    year: "2021—22",
     title: "Foundations in Programming",
     org: "C, C++ & Web Fundamentals",
-    period: "2021 — 2022",
-    color: "#77CCFD",
     note: "Picked up systems thinking with C/C++ and the fundamentals of the modern web.",
-    done: true,
   },
   {
+    year: "2020",
     title: "CBSE Schooling",
     org: "Higher Secondary",
-    period: "2020",
-    color: "#FF916B",
     note: "Set goals ridiculously high — and kept climbing toward them.",
-    done: true,
   },
 ];
 
 export default function AboutFooter() {
   return (
-    <section className="content-layer max-w-6xl mx-auto lg:px-16 px-6 mt-32 mb-8">
+    <section className="content-layer max-w-6xl mx-auto px-6 md:px-10 mt-32 mb-8">
       <Reveal>
-        <p className="text-sm uppercase tracking-[0.3em] text-violet-400 mb-3">
-          The journey
-        </p>
-        <h2 className="font-bold text-3xl sm:text-4xl mb-12">
-          Education &amp; Experience
+        <p className="eyebrow mb-4">The journey</p>
+        <h2 className="font-display text-4xl sm:text-5xl mb-4">
+          Education &amp; experience
         </h2>
       </Reveal>
 
-      <Reveal stagger className="relative max-w-3xl">
+      <div className="rule mb-2" />
+
+      <Reveal stagger>
         {timeline.map((item, i) => (
           <div
             key={i}
-            className="relative flex items-start gap-x-6 pb-12 last:pb-0"
+            className="grid md:grid-cols-[9rem_1fr] gap-x-8 gap-y-2 border-b border-[color:rgba(244,239,230,0.08)] py-8"
           >
-            {/* connector line */}
-            {i !== timeline.length - 1 && (
-              <span className="absolute left-[11px] top-7 h-full w-px bg-gradient-to-b from-white/20 to-transparent" />
-            )}
-            {/* node */}
-            <span
-              className="mt-1.5 h-6 w-6 shrink-0 rounded-full border-2 flex items-center justify-center"
-              style={{ borderColor: item.color }}
-            >
-              <span
-                className="h-2 w-2 rounded-full"
-                style={{ background: item.color }}
-              />
+            <span className="font-display text-xl text-[color:var(--amber)]">
+              {item.year}
             </span>
-
-            <div className="flex flex-col">
-              <h3 className="text-lg font-semibold text-white">
-                {item.title}
-              </h3>
-              <p className="text-zinc-300">{item.org}</p>
-              <small className="mt-1 text-xs tracking-widest uppercase text-zinc-500">
-                {item.period}
-              </small>
-              <p className="mt-3 text-zinc-400 max-w-xl">{item.note}</p>
+            <div>
+              <h3 className="text-xl text-[color:var(--ink)]">{item.title}</h3>
+              <p className="text-[color:var(--ink-soft)] mt-0.5">{item.org}</p>
+              <p className="mt-3 max-w-xl text-[color:var(--ink-mute)]">
+                {item.note}
+              </p>
             </div>
           </div>
         ))}

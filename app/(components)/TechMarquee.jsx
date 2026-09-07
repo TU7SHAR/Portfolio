@@ -25,16 +25,16 @@ const tech = [
 export default function TechMarquee() {
   const row = [...tech, ...tech];
   return (
-    <div className="relative overflow-hidden py-6 border-y border-white/5 bg-white/[0.02]">
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#08080b] to-transparent z-10" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#08080b] to-transparent z-10" />
-      <div className="flex w-max animate-[marquee_28s_linear_infinite] gap-4 hover:[animation-play-state:paused]">
+    <div className="relative overflow-hidden border-y border-[color:rgba(244,239,230,0.08)] py-6">
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0c0b09] to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#0c0b09] to-transparent z-10" />
+      <div className="flex w-max animate-[marquee_36s_linear_infinite] items-center gap-8 hover:[animation-play-state:paused]">
         {row.map((t, i) => (
-          <span
-            key={i}
-            className="whitespace-nowrap rounded-full border border-white/10 bg-white/[0.03] px-5 py-2 text-sm text-zinc-300"
-          >
-            {t}
+          <span key={i} className="flex items-center gap-8 whitespace-nowrap">
+            <span className="font-display text-lg text-[color:var(--ink-soft)]">
+              {t}
+            </span>
+            <span className="h-1 w-1 rounded-full bg-[color:var(--amber)]/70" />
           </span>
         ))}
       </div>

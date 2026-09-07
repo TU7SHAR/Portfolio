@@ -11,37 +11,66 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="relative mt-24 border-t border-white/5">
-      <div className="max-w-6xl mx-auto md:px-16 px-6 py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-center md:text-left">
-            <p className="font-semibold gradient-text text-lg">Tushar Gautam</p>
-            <p className="text-sm text-zinc-500 mt-1">
-              Full-Stack &amp; AI Product Engineer · Based in Bharat
+    <footer className="content-layer relative mt-24 border-t border-[color:rgba(244,239,230,0.08)]">
+      <div className="max-w-6xl mx-auto px-6 md:px-10 py-14">
+        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr]">
+          <div>
+            <p className="font-display text-3xl">
+              Let&apos;s build something{" "}
+              <span className="serif-accent">worth shipping.</span>
             </p>
+            <Link
+              href="/ContactMe"
+              className="btn-amber mt-6 inline-flex items-center gap-2 px-6 py-3"
+            >
+              Start a conversation
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="h-4 w-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                />
+              </svg>
+            </Link>
           </div>
 
-          <div className="flex items-center gap-6">
-            {socials.map((s) => (
-              <Link
-                key={s.label}
-                href={s.href}
-                target={s.href.startsWith("mailto") ? undefined : "_blank"}
-                rel="noreferrer noopener"
-                className="text-sm text-zinc-400 hover:text-violet-300 transition-colors"
-              >
-                {s.label}
-              </Link>
-            ))}
+          <div className="md:text-right">
+            <p className="eyebrow mb-4">Elsewhere</p>
+            <ul className="flex flex-col gap-2 md:items-end">
+              {socials.map((s) => (
+                <li key={s.label}>
+                  <Link
+                    href={s.href}
+                    target={s.href.startsWith("mailto") ? undefined : "_blank"}
+                    rel="noreferrer noopener"
+                    className="text-[color:var(--ink-soft)] hover:text-[color:var(--amber)] transition-colors"
+                  >
+                    {s.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="hairline my-8" />
+        <div className="rule my-10" />
 
-        <p className="text-center text-xs text-zinc-600 font-mono">
-          &copy; {new Date().getFullYear()} Tushar Gautam · Built with Next.js,
-          Three.js &amp; GSAP
-        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-[color:var(--ink-mute)]">
+            &copy; {new Date().getFullYear()} Tushar Gautam — Full-Stack &amp; AI
+            Engineer, Bharat.
+          </p>
+          <p className="text-xs text-[color:var(--ink-mute)] font-mono">
+            Built with Next.js · GSAP
+          </p>
+        </div>
       </div>
     </footer>
   );

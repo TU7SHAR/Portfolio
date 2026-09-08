@@ -10,8 +10,9 @@ import {
   Vignette,
 } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
+import { Environment, Lightformer } from "@react-three/drei";
 import * as THREE from "three";
-import Blob from "./Blob.jsx";
+import Crystal from "./Crystal.jsx";
 import Particles from "./Particles.jsx";
 
 export default function Scene() {
@@ -47,14 +48,24 @@ export default function Scene() {
       }}
       style={{ width: "100%", height: "100%" }}
     >
-      <ambientLight intensity={0.4} />
-      <pointLight position={[4, 5, 4]} intensity={40} color="#ffd9a0" />
-      <pointLight position={[-5, -3, 2]} intensity={20} color="#b87a2e" />
+      <ambientLight intensity={0.5} />
+      <pointLight position={[4, 5, 4]} intensity={45} color="#ffd9a0" />
+      <pointLight position={[-5, -3, 2]} intensity={22} color="#b87a2e" />
+      <spotLight position={[0, 6, 3]} angle={0.5} intensity={30} color="#fff2dc" />
 
       <Suspense fallback={null}>
-        {/* pushed to the right so it never fights the headline */}
-        <group position={[1.35, 0.1, 0]}>
-          <Blob pointer={pointer} scroll={scroll} />
+        {/* studio-style lightformers give the glass rich edge reflections */}
+        <Environment resolution={256}>
+          <group rotation={[0, 0, 0]}>
+            <Lightformer intensity={3} position={[3, 3, 3]} scale={[4, 4, 1]} color="#ffd9a0" />
+            <Lightformer intensity={2} position={[-4, 1, 2]} scale={[3, 3, 1]} color="#b87a2e" />
+            <Lightformer intensity={1.5} position={[0, -4, 2]} scale={[6, 2, 1]} color="#ffe6be" />
+          </group>
+        </Environment>
+
+        {/* pushed far right + slightly back so it never fights the headline */}
+        <group position={[1.9, 0.35, -0.4]} scale={0.92}>
+          <Crystal pointer={pointer} scroll={scroll} />
         </group>
         <Particles pointer={pointer} />
       </Suspense>
@@ -68,7 +79,7 @@ export default function Scene() {
         />
         <ChromaticAberration
           blendFunction={BlendFunction.NORMAL}
-          offset={[0.0007, 0.0009]}
+          offset={[0.0004, 0.0005]}
         />
         <Noise premultiply blendFunction={BlendFunction.SOFT_LIGHT} opacity={0.35} />
         <Vignette eskil={false} offset={0.25} darkness={0.85} />

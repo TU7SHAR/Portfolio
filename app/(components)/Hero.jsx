@@ -78,7 +78,7 @@ export default function Hero() {
       <HeroCanvas />
 
       {/* readability scrim on the text side */}
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-[#0c0b09] via-[#0c0b09]/70 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-[#0c0b09] via-[#0c0b09]/85 via-40% to-transparent" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-32 bg-gradient-to-t from-[#0c0b09] to-transparent" />
 
       <div className="content-layer relative mx-auto w-full max-w-6xl px-6 md:px-10 py-24">

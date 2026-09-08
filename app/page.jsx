@@ -2,6 +2,7 @@ import Link from "next/link";
 import Hero from "./(components)/Hero.jsx";
 import TechMarquee from "./(components)/TechMarquee.jsx";
 import AboutFooter from "./(components)/AboutFooter.jsx";
+import GithubActivity from "./(components)/GithubActivity.jsx";
 import Reveal from "./(components)/Reveal.jsx";
 
 const featured = [
@@ -109,6 +110,8 @@ export default function Page() {
           ))}
         </Reveal>
       </section>
+
+      <GithubActivity />
 
       <AboutFooter />
     </main>

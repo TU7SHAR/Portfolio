@@ -33,14 +33,13 @@ export default function Nav() {
                 {l.label}
               </Link>
             ))}
-            <Link
+            <a
               href="/resume.pdf"
-              target="_blank"
-              rel="noreferrer noopener"
+              download="Tushar-Gautam-Resume.pdf"
               className="btn-ghost hidden sm:inline-flex items-center px-4 py-1.5 text-sm"
             >
               Résumé
-            </Link>
+            </a>
           </div>
         </nav>
       </div>

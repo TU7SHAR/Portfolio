@@ -1,0 +1,22 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14120e"/>
+      <stop offset="1" stop-color="#0c0b09"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffd9a0"/>
+      <stop offset="0.5" stop-color="#e0a049"/>
+      <stop offset="1" stop-color="#b87a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="url(#bg)"/>
+  <!-- faceted amber gem echo -->
+  <g opacity="0.9">
+    <polygon points="128,150 168,120 152,182 104,182 88,120" fill="url(#amber)" opacity="0.18"/>
+  </g>
+  <!-- monogram T -->
+  <path d="M74 78 H182 V104 H142 V190 H114 V104 H74 Z" fill="url(#amber)"/>
+  <!-- jewelled accent line -->
+  <rect x="74" y="200" width="108" height="6" rx="3" fill="#e0a049" opacity="0.55"/>
+</svg>

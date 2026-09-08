@@ -27,6 +27,7 @@ const notoDevanagari = Noto_Sans_Devanagari({
 import Footer from "./(components)/Footer";
 import Nav from "./(components)/Nav";
 import Cursor from "./(components)/Cursor.jsx";
+import LivingBackground from "./(components)/three/LivingBackground.jsx";
 import AuthProvider from "./(components)/AuthProvider.jsx";
 import siteMetaData from "../app/utils/siteMetaData.js";
 
@@ -81,8 +82,9 @@ export default function RootLayout({ children }) {
     >
       <AuthProvider>
         <body className="flex min-h-screen w-full flex-col bg-[#0c0b09] font-sans antialiased">
-          {/* ambient warm backdrop + film grain */}
+          {/* living animated backdrop (falls back to the static gradient) */}
           <div className="ambient" aria-hidden="true" />
+          <LivingBackground />
           <div className="grain" aria-hidden="true" />
           <Cursor />
           <Nav />

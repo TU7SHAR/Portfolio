@@ -37,11 +37,14 @@ function buildFallback() {
   return days;
 }
 
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
 export default function GithubActivity() {
   const [days, setDays] = useState(null);
   const [total, setTotal] = useState(null);
   const [live, setLive] = useState(false);
   const grid = useRef(null);
+  const scroller = useRef(null);
 
   useEffect(() => {
     let alive = true;
@@ -79,7 +82,8 @@ export default function GithubActivity() {
     };
   }, []);
 
-  // animate squares in once data lands
+  // animate squares in once data lands, then snap the scroller to the most
+  // recent weeks (right edge) so mobile shows the LATEST activity first.
   useEffect(() => {
     if (!days || !grid.current) return;
     const cells = grid.current.querySelectorAll(".gh-cell");
@@ -94,6 +98,10 @@ export default function GithubActivity() {
         cell.style.transform = "scale(1)";
       }, 200 + delay);
     });
+    // jump to the right (most recent) — where the real activity is
+    if (scroller.current) {
+      scroller.current.scrollLeft = scroller.current.scrollWidth;
+    }
   }, [days]);
 
   const max = days ? Math.max(...days.map((d) => d.count)) : 0;
@@ -104,9 +112,21 @@ export default function GithubActivity() {
     for (let i = 0; i < days.length; i += 7) weeks.push(days.slice(i, i + 7));
   }
 
+  // month labels: mark the week where a new month first appears
+  const monthLabels = weeks.map((week, wi) => {
+    const first = week[0];
+    if (!first) return null;
+    const d = new Date(first.date);
+    const prev = wi > 0 ? new Date(weeks[wi - 1][0].date) : null;
+    if (!prev || prev.getMonth() !== d.getMonth()) {
+      return { wi, label: MONTHS[d.getMonth()] };
+    }
+    return null;
+  });
+
   return (
-    <section className="content-layer max-w-6xl mx-auto px-6 md:px-10 my-28">
-      <Reveal className="flex items-end justify-between flex-wrap gap-4 mb-8">
+    <section className="content-layer max-w-6xl mx-auto px-6 md:px-10 my-16 sm:my-28">
+      <Reveal className="flex items-end justify-between flex-wrap gap-4 mb-6 sm:mb-8">
         <div>
           <p className="eyebrow mb-4">Activity</p>
           <h2 className="font-display text-4xl sm:text-5xl">
@@ -147,23 +167,47 @@ export default function GithubActivity() {
           )}
         </div>
 
-        <div className="overflow-x-auto pb-2">
-          <div ref={grid} className="flex gap-[3px] min-w-max">
-            {weeks.map((week, wi) => (
-              <div key={wi} className="flex flex-col gap-[3px]">
-                {week.map((day, di) => (
-                  <span
-                    key={di}
-                    className="gh-cell h-[11px] w-[11px] rounded-[2px]"
-                    style={{
-                      background: LEVELS[levelFor(day.count, max)],
-                    }}
-                    title={`${day.count} on ${day.date}`}
-                  />
+        {/* scroll container starts at the most-recent (right) edge on mobile;
+            edge fades hint that it scrolls. */}
+        <div className="relative">
+          <div
+            ref={scroller}
+            className="overflow-x-auto pb-2 gh-scroll"
+            aria-label="GitHub contribution graph for the last year"
+          >
+            <div className="min-w-max">
+              {/* month labels */}
+              <div className="flex gap-[3px] mb-1.5">
+                {weeks.map((_, wi) => (
+                  <div key={wi} className="w-[13px] shrink-0">
+                    {monthLabels[wi] && (
+                      <span className="block text-[10px] leading-none text-[color:var(--ink-mute)] whitespace-nowrap">
+                        {monthLabels[wi].label}
+                      </span>
+                    )}
+                  </div>
                 ))}
               </div>
-            ))}
+              {/* squares */}
+              <div ref={grid} className="flex gap-[3px]">
+                {weeks.map((week, wi) => (
+                  <div key={wi} className="flex flex-col gap-[3px]">
+                    {week.map((day, di) => (
+                      <span
+                        key={di}
+                        className="gh-cell h-[13px] w-[13px] rounded-[3px]"
+                        style={{ background: LEVELS[levelFor(day.count, max)] }}
+                        title={`${day.count} contribution${day.count === 1 ? "" : "s"} on ${day.date}`}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
+          {/* left/right fade hints for scrollability */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-[color:var(--surface)] to-transparent sm:hidden" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[color:var(--surface)] to-transparent sm:hidden" />
         </div>
 
         <div className="mt-5 flex items-center gap-2 text-xs text-[color:var(--ink-mute)]">
@@ -171,13 +215,27 @@ export default function GithubActivity() {
           {LEVELS.map((c, i) => (
             <span
               key={i}
-              className="h-[11px] w-[11px] rounded-[2px]"
+              className="h-[13px] w-[13px] rounded-[3px]"
               style={{ background: c }}
             />
           ))}
           <span>More</span>
         </div>
       </Reveal>
+
+      <style jsx>{`
+        .gh-scroll {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(224, 160, 73, 0.5) transparent;
+        }
+        .gh-scroll::-webkit-scrollbar {
+          height: 6px;
+        }
+        .gh-scroll::-webkit-scrollbar-thumb {
+          background: rgba(224, 160, 73, 0.5);
+          border-radius: 3px;
+        }
+      `}</style>
     </section>
   );
 }

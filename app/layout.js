@@ -38,6 +38,33 @@ export const metadata = {
     default: siteMetaData.title,
   },
   description: siteMetaData.description,
+  applicationName: "Tushar Gautam — Portfolio",
+  authors: [{ name: siteMetaData.author, url: siteMetaData.siteUrl }],
+  creator: siteMetaData.author,
+  publisher: siteMetaData.author,
+  keywords: [
+    "Tushar Gautam",
+    "full-stack developer",
+    "AI engineer",
+    "React developer",
+    "Next.js developer",
+    "Flask developer",
+    "RAG chatbot",
+    "portfolio",
+    "web developer India",
+    "Kharar Punjab developer",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     title: siteMetaData.title,
     description: siteMetaData.description,
@@ -46,10 +73,9 @@ export const metadata = {
     images: [
       {
         url: siteMetaData.socialBanner,
-      },
-      {
-        url: siteMetaData.altBanner,
-        alt: "My custom alt",
+        width: 1200,
+        height: 630,
+        alt: "Tushar Gautam — Full-Stack & AI Product Engineer",
       },
     ],
     locale: "en_US",
@@ -70,8 +96,50 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: siteMetaData.title,
-    images: siteMetaData.socialBanner,
+    description: siteMetaData.description,
+    images: [siteMetaData.socialBanner],
   },
+  category: "technology",
+};
+
+export const viewport = {
+  themeColor: "#0c0b09",
+  colorScheme: "dark",
+};
+
+// JSON-LD structured data so search engines understand who this is about.
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Tushar Gautam",
+  url: siteMetaData.siteUrl,
+  image: `${siteMetaData.siteUrl}${siteMetaData.socialBanner}`,
+  jobTitle: "Full-Stack & AI Product Engineer",
+  email: `mailto:${siteMetaData.email}`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Kharar",
+    addressRegion: "Punjab",
+    addressCountry: "IN",
+  },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Rayat Bahra University, Mohali",
+  },
+  worksFor: { "@type": "Organization", name: "DrishInfoTech" },
+  knowsAbout: [
+    "React.js",
+    "Next.js",
+    "TypeScript",
+    "Python",
+    "Flask",
+    "Node.js",
+    "PostgreSQL",
+    "RAG",
+    "Gemini API",
+    "Three.js",
+  ],
+  sameAs: [siteMetaData.github, siteMetaData.linkedin],
 };
 
 export default function RootLayout({ children }) {
@@ -82,6 +150,10 @@ export default function RootLayout({ children }) {
     >
       <AuthProvider>
         <body className="flex min-h-screen w-full flex-col bg-[#0c0b09] font-sans antialiased">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+          />
           {/* living animated backdrop (falls back to the static gradient) */}
           <div className="ambient" aria-hidden="true" />
           <LivingBackground />

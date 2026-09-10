@@ -109,8 +109,7 @@ export default function Page() {
 
           <a
             href="/resume.pdf"
-            target="_blank"
-            rel="noreferrer noopener"
+            download="Tushar-Gautam-Resume.pdf"
             className="btn-amber mt-4 flex items-center justify-center gap-x-2 py-3"
           >
             <svg

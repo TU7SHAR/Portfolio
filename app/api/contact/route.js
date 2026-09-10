@@ -111,6 +111,7 @@ export async function POST(req) {
     const safeSubject = esc(subject.trim());
     const safeMessage = esc(message.trim()).replace(/\n/g, "<br/>");
 
+    // 1) Notification to Tushar — this is the important one.
     await transporter.sendMail({
       from: `"Portfolio Contact" <${from}>`,
       to,
@@ -126,6 +127,43 @@ export async function POST(req) {
           <div style="border-top:1px solid rgba(244,239,230,.12);padding-top:16px;color:#cdc6b8;line-height:1.6">${safeMessage}</div>
         </div>`,
     });
+
+    // 2) Auto-reply / confirmation to the visitor — best-effort. If this
+    // fails we don't fail the request, since the message already reached the
+    // inbox above. `replyTo` points back to Tushar so replies route correctly.
+    try {
+      await transporter.sendMail({
+        from: `"Tushar Gautam" <${from}>`,
+        to: email.trim(),
+        replyTo: to,
+        subject: "Thanks for reaching out — I got your message",
+        text: `Hi ${name.trim()},\n\nThanks for getting in touch through my portfolio — your message landed safely and I'll get back to you soon.\n\nFor your records, here's what you sent:\n\nSubject: ${subject.trim()}\n\n${message.trim()}\n\n— Tushar Gautam\nFull-Stack & AI Product Engineer\n${contactInfo.github}`,
+        html: `
+          <div style="font-family:system-ui,-apple-system,Segoe UI,sans-serif;max-width:560px;margin:0 auto;background:#0c0b09;color:#f4efe6;padding:32px;border-radius:12px">
+            <p style="letter-spacing:.28em;text-transform:uppercase;font-size:11px;color:#e0a049;margin:0 0 14px">Message received</p>
+            <h2 style="font-size:22px;margin:0 0 14px;color:#f4efe6;font-weight:600">Thanks, ${safeName} 👋</h2>
+            <p style="margin:0 0 16px;color:#cdc6b8;line-height:1.6">
+              Your message reached me safely and I&apos;ll get back to you as soon as I can — usually within a day or two.
+              In the meantime, feel free to explore my work or connect with me anywhere below.
+            </p>
+            <div style="border:1px solid rgba(244,239,230,.12);border-radius:8px;padding:16px;margin:18px 0;background:rgba(244,239,230,.02)">
+              <p style="margin:0 0 8px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8f887a">Your message</p>
+              <p style="margin:0 0 6px;color:#f4efe6"><strong>${safeSubject}</strong></p>
+              <div style="color:#cdc6b8;line-height:1.6">${safeMessage}</div>
+            </div>
+            <p style="margin:20px 0 4px;color:#f4efe6;font-weight:600">Tushar Gautam</p>
+            <p style="margin:0 0 14px;color:#8f887a;font-size:14px">Full-Stack &amp; AI Product Engineer</p>
+            <p style="margin:0">
+              <a href="${contactInfo.github}" style="color:#e0a049;text-decoration:none;margin-right:14px">GitHub</a>
+              <a href="${contactInfo.linkedin}" style="color:#e0a049;text-decoration:none;margin-right:14px">LinkedIn</a>
+              <a href="https://tushargautam.software" style="color:#e0a049;text-decoration:none">Portfolio</a>
+            </p>
+            <p style="margin:22px 0 0;color:#5f594e;font-size:11px">This is an automated confirmation — no need to reply to this email.</p>
+          </div>`,
+      });
+    } catch (autoErr) {
+      console.error("Auto-reply failed (non-fatal):", autoErr?.message || autoErr);
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {

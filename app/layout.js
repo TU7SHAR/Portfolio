@@ -1,7 +1,5 @@
-import { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { Inter, Fraunces, Noto_Sans_Devanagari } from "next/font/google";
-import Loading from "./Loading.jsx";
 import "./globals.css";
 
 const inter = Inter({
@@ -29,16 +27,21 @@ import Nav from "./(components)/Nav";
 import Cursor from "./(components)/Cursor.jsx";
 import LivingBackground from "./(components)/three/LivingBackground.jsx";
 import AuthProvider from "./(components)/AuthProvider.jsx";
+import GoogleAnalytics from "./(components)/GoogleAnalytics.jsx";
+import JsonLd from "./(components)/JsonLd.jsx";
 import siteMetaData from "../app/utils/siteMetaData.js";
 
+// Site-wide defaults. Every indexable page overrides title, description,
+// canonical, OG and Twitter via `pageMetadata()` in app/lib/seo.js.
+// OG/Twitter images come from the `opengraph-image.jsx` files.
 export const metadata = {
   metadataBase: new URL(siteMetaData.siteUrl),
   title: {
-    template: `%s | ${siteMetaData.title}`,
+    template: `%s | ${siteMetaData.shortTitle}`,
     default: siteMetaData.title,
   },
   description: siteMetaData.description,
-  applicationName: "Tushar Gautam — Portfolio",
+  applicationName: siteMetaData.shortTitle,
   authors: [{ name: siteMetaData.author, url: siteMetaData.siteUrl }],
   creator: siteMetaData.author,
   publisher: siteMetaData.author,
@@ -51,13 +54,11 @@ export const metadata = {
     "Flask developer",
     "RAG chatbot",
     "AI video ad generator",
-    "portfolio",
     "web developer India",
-    "Kharar Punjab developer",
   ],
-  alternates: {
-    canonical: "/",
-  },
+  ...(process.env.GOOGLE_SITE_VERIFICATION && {
+    verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
+  }),
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },
@@ -70,16 +71,8 @@ export const metadata = {
     title: siteMetaData.title,
     description: siteMetaData.description,
     url: siteMetaData.siteUrl,
-    siteName: siteMetaData.title,
-    images: [
-      {
-        url: siteMetaData.socialBanner,
-        width: 1200,
-        height: 630,
-        alt: "Tushar Gautam — Full-Stack & AI Product Engineer",
-      },
-    ],
-    locale: "en_US",
+    siteName: siteMetaData.shortTitle,
+    locale: siteMetaData.locale,
     type: "website",
   },
   robots: {
@@ -98,7 +91,6 @@ export const metadata = {
     card: "summary_large_image",
     title: siteMetaData.title,
     description: siteMetaData.description,
-    images: [siteMetaData.socialBanner],
   },
   category: "technology",
 };
@@ -109,13 +101,15 @@ export const viewport = {
 };
 
 // JSON-LD structured data so search engines understand who this is about.
+const PERSON_ID = `${siteMetaData.siteUrl}/#person`;
 const personJsonLd = {
-  "@context": "https://schema.org",
   "@type": "Person",
+  "@id": PERSON_ID,
   name: "Tushar Gautam",
   url: siteMetaData.siteUrl,
-  image: `${siteMetaData.siteUrl}${siteMetaData.socialBanner}`,
-  jobTitle: "Full-Stack & AI Product Engineer",
+  image: `${siteMetaData.siteUrl}${siteMetaData.profileImage}`,
+  jobTitle: siteMetaData.jobTitle,
+  description: siteMetaData.description,
   email: `mailto:${siteMetaData.email}`,
   address: {
     "@type": "PostalAddress",
@@ -143,6 +137,23 @@ const personJsonLd = {
   sameAs: [siteMetaData.github, siteMetaData.linkedin],
 };
 
+const siteJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    personJsonLd,
+    {
+      "@type": "WebSite",
+      "@id": `${siteMetaData.siteUrl}/#website`,
+      url: siteMetaData.siteUrl,
+      name: siteMetaData.shortTitle,
+      description: siteMetaData.description,
+      inLanguage: "en",
+      author: { "@id": PERSON_ID },
+      publisher: { "@id": PERSON_ID },
+    },
+  ],
+};
+
 export default function RootLayout({ children }) {
   return (
     <html
@@ -151,10 +162,7 @@ export default function RootLayout({ children }) {
     >
       <AuthProvider>
         <body className="flex min-h-screen w-full flex-col bg-[#0c0b09] font-sans antialiased">
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-          />
+          <JsonLd data={siteJsonLd} />
           {/* living animated backdrop (falls back to the static gradient) */}
           <div className="ambient" aria-hidden="true" />
           <LivingBackground />
@@ -162,10 +170,13 @@ export default function RootLayout({ children }) {
           <Cursor />
           <Nav />
           <div className="content-layer flex-1">
-            <Suspense fallback={<Loading />}>{children}</Suspense>
+            {/* No root <Suspense>: it made dynamic pages stream a 200 before
+                notFound() could run, turning missing blog posts into soft 404s. */}
+            {children}
           </div>
           <Footer />
           <Analytics />
+          <GoogleAnalytics />
         </body>
       </AuthProvider>
     </html>

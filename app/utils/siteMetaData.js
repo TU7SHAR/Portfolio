@@ -1,19 +1,22 @@
 const siteMetaData = {
-  title: "Tushar Gautam — Full-Stack & AI Product Engineer",
+  // 57 chars — keep the default title within the 55–60 char SEO window.
+  title: "Tushar Gautam — Full-Stack & AI Product Engineer in India",
+  shortTitle: "Tushar Gautam",
   author: "Tushar Gautam",
   headerTitle: "Tushar Gautam",
+  jobTitle: "Full-Stack & AI Product Engineer",
+  // 155–160 chars.
   description:
-    "Portfolio of Tushar Gautam — a frontend-focused full-stack developer building performance-driven web apps with React & Next.js, and shipping production AI products (RAG chatbots, AI astrology, AI video ads) with Flask, Gemini, and PostgreSQL.",
+    "Tushar Gautam is a full-stack & AI product engineer in India building fast React & Next.js apps and production AI SaaS: RAG chatbots, AI video ads and more.",
   language: "en-us",
   theme: "dark",
   siteUrl: "https://tushargautam.software",
   siteLogo: "/logo.png",
-  socialBanner: "/Banner.png",
-  altBanner: "/Banner-alt.png",
+  profileImage: "/Tushar.jpg",
   email: "gautams4work@gmail.com",
   github: "https://github.com/TU7SHAR",
   linkedin: "https://www.linkedin.com/in/tushar-gautam-73a678314/",
-  locale: "en-us",
+  locale: "en_US",
 };
 
 module.exports = siteMetaData;

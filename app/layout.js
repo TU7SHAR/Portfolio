@@ -50,6 +50,7 @@ export const metadata = {
     "Next.js developer",
     "Flask developer",
     "RAG chatbot",
+    "AI video ad generator",
     "portfolio",
     "web developer India",
     "Kharar Punjab developer",

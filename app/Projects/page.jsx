@@ -5,7 +5,7 @@ import Reveal from "../(components)/Reveal.jsx";
 export const metadata = {
   title: "Work",
   description:
-    "Production SaaS products and projects built by Tushar Gautam — RAG chatbots, AI astrology, Telegram sales agents, and more.",
+    "Production SaaS products and projects built by Tushar Gautam — RAG chatbots, AI astrology, Telegram sales agents, AI video ads, and more.",
 };
 
 const flagship = [
@@ -44,6 +44,19 @@ const flagship = [
       "Built as a multi-tenant SaaS product",
     ],
     stack: ["Telegram Bot API", "AI Agents", "Next.js", "PostgreSQL"],
+  },
+  {
+    name: "makeperfectads.com",
+    tag: "AI Video Ad Generator",
+    href: "https://www.makeperfectads.com",
+    desc: "An AI video ad generator that turns a website link or product photo into a short, ready-to-publish video ad. The Studio reads the page, works out what you sell, plans the ad shot by shot and produces it — the user only confirms one screen, with no timeline to edit.",
+    points: [
+      "Pipeline: read page → collect product images & brand look → plan shots → generate AI video → mix voiceover & music",
+      "84 languages plus 14 mixed styles (Hinglish, Tanglish, Spanglish…), including right-to-left caption support",
+      "Automatic pre-download checks for audio loudness, unsupported claims and link validity",
+      "Exports 8–20s MP4 in 9:16 (Reels, TikTok, Shorts) or 16:9, at 1080p or 720p",
+    ],
+    stack: ["AI Video", "Web Scraping", "Voiceover · TTS", "84 Languages", "MP4 Export"],
   },
 ];
 

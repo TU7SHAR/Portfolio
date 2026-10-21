@@ -103,6 +103,11 @@ pdf.set_font("Helvetica", "B", 10.5)
 pdf.set_text_color(*DARK)
 pdf.multi_cell(0, 5, "app.salesji.com - AI Telegram Bot Workspace  |  Telegram Bot API, AI Agents, Next.js, PostgreSQL", new_x="LMARGIN", new_y="NEXT")
 bullet(pdf, "Built a workspace for creating and managing AI-powered Telegram sales bots, letting businesses deploy conversational agents that engage leads and automate sales conversations directly inside Telegram.")
+pdf.ln(2)
+pdf.set_font("Helvetica", "B", 10.5)
+pdf.set_text_color(*DARK)
+pdf.multi_cell(0, 5, "makeperfectads.com - AI Video Ad Generator  |  AI Video, Web Scraping, TTS Voiceover, Multilingual", new_x="LMARGIN", new_y="NEXT")
+bullet(pdf, "Built an AI studio that turns a website link into an 8-20s video ad: reads the page, picks product images and brand colours, plans shots, and generates AI video with captions, voiceover and music in 84 languages (incl. Hinglish).")
 
 # Education
 section(pdf, "Education")

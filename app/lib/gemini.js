@@ -96,13 +96,22 @@ const textFromResponse = (data) =>
     .join("")
     .trim();
 
-async function callGemini(body, model, key) {
-  const res = await fetch(`${API}/${model}:generateContent`, {
-    method: "POST",
-    headers: { "content-type": "application/json", "x-goog-api-key": key },
-    body: JSON.stringify(body),
-    cache: "no-store",
-  });
+async function callGemini(body, model, key, signal) {
+  let res;
+  try {
+    res = await fetch(`${API}/${model}:generateContent`, {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-goog-api-key": key },
+      body: JSON.stringify(body),
+      cache: "no-store",
+      signal,
+    });
+  } catch (err) {
+    if (err.name === "AbortError" || signal?.aborted) {
+      throw new Error("Gemini took too long and was stopped (try GEMINI_GROUNDING=false or enable Fluid Compute)");
+    }
+    throw err;
+  }
   const data = await res.json().catch(() => ({}));
   return { ok: res.ok, status: res.status, data };
 }
@@ -110,7 +119,7 @@ async function callGemini(body, model, key) {
 /**
  * @returns {Promise<{ post: object, model: string }>}
  */
-export async function generateBlogPost(candidates, recentTitles = []) {
+export async function generateBlogPost(candidates, recentTitles = [], { timeoutMs = 240000 } = {}) {
   const key = process.env.GEMINI_API_KEY;
   if (!key) throw new Error("GEMINI_API_KEY is not set");
   const model = process.env.GEMINI_MODEL || "gemini-3.8-flash";
@@ -120,6 +129,7 @@ export async function generateBlogPost(candidates, recentTitles = []) {
     contents: [{ role: "user", parts: [{ text: buildPrompt(candidates, recentTitles) }] }],
     ...(grounding && { tools: [{ googleSearch: {} }] }),
   };
+  const signal = AbortSignal.timeout(timeoutMs);
 
   // Current REST shape for structured output…
   let r = await callGemini(
@@ -131,7 +141,8 @@ export async function generateBlogPost(candidates, recentTitles = []) {
       },
     },
     model,
-    key
+    key,
+    signal
   );
 
   // …with a fallback to the older field names if GEMINI_MODEL points at an
@@ -146,7 +157,8 @@ export async function generateBlogPost(candidates, recentTitles = []) {
         },
       },
       model,
-      key
+      key,
+      signal
     );
   }
 

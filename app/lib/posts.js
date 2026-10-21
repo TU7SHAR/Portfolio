@@ -16,11 +16,21 @@ const CACHE = { tags: [POSTS_TAG], revalidate: 3600 };
 
 const toPlain = (doc) => JSON.parse(JSON.stringify(doc));
 
+const countPosts = unstable_cache(
+  async () => {
+    await dbConnect();
+    return Post.countDocuments({ status: "published" });
+  },
+  ["posts:count"],
+  CACHE
+);
+
 const listPosts = unstable_cache(
-  async (limit) => {
+  async (limit, skip = 0) => {
     await dbConnect();
     const posts = await Post.find({ status: "published" })
       .sort({ publishedAt: -1 })
+      .skip(skip)
       .limit(limit)
       .select("slug title excerpt category tags publishedAt updatedAt readingMinutes")
       .lean();
@@ -58,13 +68,22 @@ const findRelated = unstable_cache(
   CACHE
 );
 
-export async function getPublishedPosts({ limit = 60 } = {}) {
+export async function getPublishedPosts({ limit = 60, skip = 0 } = {}) {
   if (!isDbConfigured()) return [];
   try {
-    return await listPosts(limit);
+    return await listPosts(limit, skip);
   } catch (err) {
     console.error("[blog] getPublishedPosts failed:", err.message);
     return [];
+  }
+}
+
+export async function countPublishedPosts() {
+  if (!isDbConfigured()) return 0;
+  try {
+    return await countPosts();
+  } catch {
+    return 0;
   }
 }
 

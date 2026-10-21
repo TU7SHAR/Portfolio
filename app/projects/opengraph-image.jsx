@@ -10,6 +10,6 @@ export default function Image() {
     title: "Things I have designed, built",
     accent: "& shipped.",
     subtitle: "Production AI SaaS — RAG chatbots, AI astrology, Telegram sales agents and AI video ads.",
-    tags: ["bubbl.ooo", "bhavishai.in", "salesji.com", "makeperfectads.com"],
+    tags: ["makeperfectads.com", "bhavishai.in", "bubbl.ooo", "salesji.com"],
   });
 }

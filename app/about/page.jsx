@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "../(components)/Reveal.jsx";
 import Tilt from "../(components)/Tilt.jsx";
+import { languages, technologies, tools } from "../utils/projects.js";
 
 import JsonLd from "../(components)/JsonLd.jsx";
 import { pageMetadata, breadcrumbJsonLd } from "../lib/seo.js";
@@ -16,39 +17,9 @@ export const metadata = pageMetadata({
 });
 
 const skillGroups = [
-  {
-    label: "Languages",
-    items: ["JavaScript", "TypeScript", "Python", "C++", "C", "SQL"],
-  },
-  {
-    label: "Frontend",
-    items: ["React.js", "Next.js", "Tailwind CSS", "Three.js", "GSAP", "HTML5", "CSS3"],
-  },
-  {
-    label: "Backend",
-    items: ["Flask", "Node.js", "REST APIs", "Gunicorn", "Celery", "Systemd / VPS"],
-  },
-  {
-    label: "Databases & Caching",
-    items: ["PostgreSQL", "MongoDB", "MySQL", "Redis"],
-  },
-  {
-    label: "AI & Integrations",
-    items: [
-      "Gemini API",
-      "RAG / Vector Search",
-      "Prompt Engineering",
-      "Swiss Ephemeris",
-      "Razorpay",
-      "Paddle",
-      "Nodemailer",
-      "NextAuth",
-    ],
-  },
-  {
-    label: "Tools & Practices",
-    items: ["Git & GitHub", "Postman", "GitHub Copilot", "Vercel", "DSA (LeetCode / CodeChef)"],
-  },
+  { label: "Languages", items: languages.map((l) => l.name) },
+  ...technologies,
+  ...tools,
 ];
 
 export default function Page() {
@@ -66,25 +37,30 @@ export default function Page() {
 
           <div className="flex flex-col gap-y-6 text-[color:var(--ink-soft)] leading-relaxed text-lg">
             <p>
-              I&apos;m a frontend-focused web developer skilled in{" "}
+              I&apos;m an <span className="text-[color:var(--ink)]">AI engineer</span>{" "}
+              and full-stack developer, strongest in{" "}
               <span className="text-[color:var(--ink)]">React.js</span> and{" "}
               <span className="text-[color:var(--ink)]">Next.js</span>, with a
-              growing backend footprint in Python Flask and Node. I love building
-              interactive, performance-driven applications — and lately, shipping
-              real AI products end to end.
+              solid backend footprint in Python Flask and Node. I build
+              performance-driven web apps and ship real AI products end to end.
             </p>
             <p>
-              I&apos;ve engineered a{" "}
-              <span className="amber-text">multi-tenant RAG chatbot SaaS</span>{" "}
-              (bubbl.ooo), an{" "}
-              <span className="amber-text">AI astrology platform</span>{" "}
-              (bhavishai.in), a{" "}
-              <span className="amber-text">Telegram sales-bot workspace</span>{" "}
-              (salesji.com), and an{" "}
-              <span className="amber-text">AI video ad generator</span>{" "}
-              (makeperfectads.com). I&apos;m currently interning at{" "}
-              <span className="text-[color:var(--ink)]">DrishInfoTech</span> while
-              building production SaaS independently.
+              I work with <span className="amber-text">agentic, AI-assisted development</span>:
+              I design the architecture and data model, AI coding agents handle
+              the repetitive implementation, and I review, test and harden every
+              change before it ships. It lets me move at startup speed without
+              giving up code quality.
+            </p>
+            <p>
+              Right now I&apos;m building{" "}
+              <span className="amber-text">makeperfectads.com</span>, an AI video ad
+              generator, alongside <span className="amber-text">bhavishai.in</span>,
+              my AI astrology platform — both personal products. During my
+              internship at{" "}
+              <span className="text-[color:var(--ink)]">DrishInfoTech</span> I
+              built <span className="amber-text">bubbl.ooo</span>, a multi-tenant
+              RAG chatbot SaaS, and <span className="amber-text">salesji.com</span>,
+              a Telegram sales-bot workspace.
             </p>
             <p>
               Strong foundation in problem-solving and scalable architecture, with
@@ -172,13 +148,13 @@ export default function Page() {
           Skills &amp; expertise
         </h2>
         <p className="text-lg text-[color:var(--ink-soft)] max-w-xl">
-          The technologies I reach for to design, build, and ship
+          The languages, technologies and tools I use to design, build and ship
           production-grade products — from pixel-perfect frontends to AI-powered
-          backends.
+          backends, built with an agentic workflow.
         </p>
       </Reveal>
 
-      <Reveal stagger className="mt-10 grid sm:grid-cols-2 gap-4">
+      <Reveal stagger className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {skillGroups.map((group) => (
           <Tilt key={group.label} max={6}>
             <div className="card p-6 h-full">

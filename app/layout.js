@@ -54,6 +54,8 @@ export const metadata = {
     "Flask developer",
     "RAG chatbot",
     "AI video ad generator",
+    "agentic coding",
+    "AI-assisted development",
     "web developer India",
   ],
   ...(process.env.GOOGLE_SITE_VERIFICATION && {
@@ -133,6 +135,9 @@ const personJsonLd = {
     "RAG",
     "Gemini API",
     "Three.js",
+    "AI agents",
+    "Agentic coding",
+    "AI-assisted software development",
   ],
   sameAs: [siteMetaData.github, siteMetaData.linkedin],
 };

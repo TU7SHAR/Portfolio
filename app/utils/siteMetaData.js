@@ -7,7 +7,7 @@ const siteMetaData = {
   jobTitle: "Full-Stack & AI Product Engineer",
   // 155–160 chars.
   description:
-    "Tushar Gautam is a full-stack & AI product engineer in India building fast React & Next.js apps and production AI SaaS: RAG chatbots, AI video ads and more.",
+    "Tushar Gautam is a full-stack AI engineer in India who uses agentic, AI-assisted development to ship fast React & Next.js apps and production AI SaaS products.",
   language: "en-us",
   theme: "dark",
   siteUrl: "https://tushargautam.software",

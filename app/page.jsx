@@ -4,6 +4,9 @@ import TechMarquee from "./(components)/TechMarquee.jsx";
 import AboutFooter from "./(components)/AboutFooter.jsx";
 import GithubActivity from "./(components)/GithubActivity.jsx";
 import Reveal from "./(components)/Reveal.jsx";
+import Badges from "./(components)/Badges.jsx";
+import HowIBuild from "./(components)/HowIBuild.jsx";
+import { flagship } from "./utils/projects.js";
 import JsonLd from "./(components)/JsonLd.jsx";
 import site from "./utils/siteMetaData.js";
 import { pageMetadata } from "./lib/seo.js";
@@ -15,39 +18,10 @@ export const metadata = pageMetadata({
   title: site.title,
   description: site.description,
   path: "/",
-  keywords: ["full-stack developer India", "AI product engineer", "Next.js developer", "RAG chatbot developer"],
+  keywords: ["AI engineer India", "agentic coding", "AI-assisted development", "full-stack developer India", "Next.js developer"],
 });
 
-const featured = [
-  {
-    name: "bubbl.ooo",
-    tag: "RAG Chatbot SaaS",
-    href: "https://app.bubbl.ooo",
-    desc: "A multi-tenant platform where scraped web content is auto-vectorized into Gemini FileSearch stores, letting businesses deploy context-aware AI agents with persistent conversations and lead capture.",
-    stack: ["Flask", "Gemini API", "Redis · Celery", "PostgreSQL", "Paddle"],
-  },
-  {
-    name: "bhavishai.in",
-    tag: "AI Astrology",
-    href: "https://bhavishai.in",
-    desc: "Swiss Ephemeris computes planetary longitudes & dashas, wrapped in a full Razorpay payment-to-delivery pipeline with background PDF generation and an admin reconciliation dashboard.",
-    stack: ["Next.js", "Swiss Ephemeris", "Gemini AI", "Razorpay", "PostgreSQL"],
-  },
-  {
-    name: "salesji.com",
-    tag: "AI Telegram Bot Workspace",
-    href: "https://app.salesji.com",
-    desc: "A workspace for building and managing AI-powered Telegram sales bots — deploy conversational agents that engage leads and automate sales conversations right inside Telegram.",
-    stack: ["Telegram Bot API", "AI Agents", "Next.js", "PostgreSQL"],
-  },
-  {
-    name: "makeperfectads.com",
-    tag: "AI Video Ad Generator",
-    href: "https://www.makeperfectads.com",
-    desc: "Paste a link and the Studio reads the page, picks real product images and brand colours, plans a shot-by-shot ad, then produces a short 9:16 or 16:9 video with captions, voiceover and music — in 84 languages, including Hinglish.",
-    stack: ["AI Video", "Web Scraping", "Voiceover · TTS", "84 Languages", "MP4 Export"],
-  },
-];
+const featured = flagship;
 
 const profileJsonLd = {
   "@context": "https://schema.org",
@@ -111,6 +85,7 @@ export default async function Page() {
                   </h3>
                   <span className="eyebrow">{p.tag}</span>
                 </div>
+                <Badges ids={p.badges} className="mt-3" />
                 <p className="mt-3 max-w-2xl text-[color:var(--ink-soft)] leading-relaxed">
                   {p.desc}
                 </p>
@@ -141,6 +116,8 @@ export default async function Page() {
           ))}
         </Reveal>
       </section>
+
+      <HowIBuild />
 
       {latestPosts.length > 0 && (
         <section className="content-layer max-w-6xl mx-auto px-6 md:px-10 mb-28">

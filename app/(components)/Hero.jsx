@@ -82,7 +82,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-32 bg-gradient-to-t from-[#0c0b09] to-transparent" />
 
       <div className="content-layer relative mx-auto w-full max-w-6xl px-6 md:px-10 py-24">
-        <p className="h-eyebrow eyebrow mb-8">Tushar Gautam — Portfolio, 2026</p>
+        <p className="h-eyebrow eyebrow mb-8">AI Engineer · Agentic, AI-assisted development</p>
 
         <h1 className="font-display text-[2.5rem] leading-[1.0] sm:text-7xl lg:text-[6.2rem] tracking-tight max-w-4xl [hyphens:none] [overflow-wrap:normal]">
           <span className="block overflow-hidden py-[0.05em]">
@@ -103,11 +103,13 @@ export default function Hero() {
 
         <div className="mt-12 grid gap-10 md:grid-cols-[1.5fr_1fr] md:items-end">
           <p className="h-sub max-w-xl text-lg leading-relaxed text-[color:var(--ink-soft)]">
-            I&apos;m a frontend-focused developer building performance-driven web
-            apps with <span className="text-[color:var(--ink)]">React</span> &amp;{" "}
-            <span className="text-[color:var(--ink)]">Next.js</span> — and shipping
-            production AI SaaS end to end: multi-tenant RAG chatbots, an AI
-            astrology platform, Telegram sales agents and an AI video ad generator.
+            I&apos;m Tushar, an AI engineer shipping production SaaS with{" "}
+            <span className="text-[color:var(--ink)]">React</span>,{" "}
+            <span className="text-[color:var(--ink)]">Next.js</span> &amp; Python.
+            I use <span className="text-[color:var(--ink)]">agentic coding</span>{" "}
+            to move fast — AI agents write the routine code, I own the
+            architecture, review and quality. Currently building an AI video ad
+            generator.
           </p>
 
           <div className="h-cta flex flex-wrap items-center gap-3 md:justify-end">

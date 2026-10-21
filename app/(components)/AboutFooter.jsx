@@ -9,9 +9,9 @@ const timeline = [
   },
   {
     year: "2023—",
-    title: "Full-Stack & AI Development",
-    org: "Self-driven · Interning at DrishInfoTech",
-    note: "Shipped multi-tenant RAG chatbots, an AI astrology platform, and Telegram sales agents.",
+    title: "AI Engineer · Full-Stack Development",
+    org: "Intern at DrishInfoTech · Building my own products",
+    note: "Built bubbl.ooo (RAG chatbot SaaS) and salesji.com (Telegram sales bots) at DrishInfoTech; building makeperfectads.com and bhavishai.in as personal products — all with an agentic, AI-assisted workflow.",
   },
   {
     year: "2021—22",

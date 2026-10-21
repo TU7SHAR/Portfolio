@@ -5,6 +5,7 @@ import { timingSafeEqual } from "node:crypto";
 import { waitUntil } from "@vercel/functions";
 import { dbConnect } from "../../../lib/db.js";
 import Post from "../../../(models)/Post.js";
+import CronRun from "../../../(models)/CronRun.js";
 import { collectTrendingTopics, normalizeTopic } from "../../../lib/trends.js";
 import { generateBlogPost } from "../../../lib/gemini.js";
 
@@ -13,15 +14,22 @@ import { generateBlogPost } from "../../../lib/gemini.js";
 // revalidates /blog, the new post page and the sitemap.
 //
 // Auth: send `Authorization: Bearer <CRON_SECRET>` (preferred) or `?key=<CRON_SECRET>`.
-// Options: `?dryRun=1` → only returns the scraped candidates (no Gemini call, nothing saved)
+// Options: `?status=1` → last 10 runs with their result / error (start here when debugging)
+//          `?dryRun=1` → only returns the scraped candidates (no Gemini call, nothing saved)
 //          `?wait=1`   → wait for the post and return it (default: respond 202 at once)
 //          `?topic=Some+keyword` → skip scraping and write about this topic
+//          `?force=1`  → ignore the minimum interval between posts
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-export const maxDuration = 60; // seconds (Vercel Hobby allows up to 60)
+// Scrape + grounded Gemini generation can take well over 60s. 300s is the
+// Hobby maximum and requires Fluid Compute (Vercel → Settings → Functions).
+export const maxDuration = 300;
 
 const MAX_CANDIDATES = 30;
+// Guards against double triggers (e.g. a job accidentally set to every 15 min).
+// Default 100 min fits a 2-hourly schedule with some slack.
+const MIN_INTERVAL_MIN = Number(process.env.BLOG_MIN_INTERVAL_MINUTES ?? 100);
 
 function authorized(req) {
   const secret = process.env.CRON_SECRET;
@@ -113,15 +121,34 @@ function revalidateBlog() {
   revalidatePath("/");
 }
 
-async function runGeneration(forcedTopic, onSaved) {
+/** Returns a reason string if a new run should NOT start now. */
+async function shouldSkip(force) {
+  const running = await CronRun.findOne({
+    status: "running",
+    createdAt: { $gt: new Date(Date.now() - (maxDuration + 30) * 1000) },
+  }).lean();
+  if (running) return `Another run is still in progress (started ${running.createdAt.toISOString()})`;
+  if (force || MIN_INTERVAL_MIN <= 0) return null;
+  const last = await Post.findOne({}).sort({ createdAt: -1 }).select("createdAt slug").lean();
+  const mins = last ? (Date.now() - new Date(last.createdAt).getTime()) / 60000 : Infinity;
+  if (mins < MIN_INTERVAL_MIN) {
+    return `Last post was ${Math.round(mins)} min ago (minimum ${MIN_INTERVAL_MIN} min, set BLOG_MIN_INTERVAL_MINUTES or use ?force=1)`;
+  }
+  return null;
+}
+
+async function runGeneration(forcedTopic, onSaved, run) {
   const started = Date.now();
+  const stage = (s, extra = {}) =>
+    run ? CronRun.updateOne({ _id: run._id }, { ...(s && { stage: s }), ...extra }).catch(() => {}) : null;
   try {
     // 1. Gather candidates
+    await stage("scrape");
     const { candidates, errors } = await getCandidates(forcedTopic);
     await dbConnect();
 
     // 2. Drop topics we've already written about
-    const recent = await Post.find({}).sort({ publishedAt: -1 }).limit(200).select("title topicKey").lean();
+    const recent = await Post.find({}).sort({ publishedAt: -1 }).limit(300).select("title topicKey").lean();
     const usedKeys = new Set(recent.map((p) => p.topicKey).filter(Boolean));
     const fresh = candidates.filter((c) => !usedKeys.has(c.key));
     if (!fresh.length) {
@@ -138,10 +165,12 @@ async function runGeneration(forcedTopic, onSaved) {
     }
     shortlist.length = Math.min(shortlist.length, MAX_CANDIDATES);
 
-    // 3. Generate
+    // 3. Generate (abort before Vercel would kill the function, so the error is recorded)
+    await stage("gemini", { sourceErrors: errors });
     const { post: raw, model } = await generateBlogPost(
       shortlist,
-      recent.slice(0, 25).map((p) => p.title)
+      recent.slice(0, 40).map((p) => p.title),
+      { timeoutMs: Math.max(20, maxDuration - 45 - (Date.now() - started) / 1000) * 1000 }
     );
     const chosen = shortlist[raw.chosenIndex] || shortlist[0];
     const post = sanitizePost(raw);
@@ -151,6 +180,7 @@ async function runGeneration(forcedTopic, onSaved) {
     }
 
     // 4. Save
+    await stage("save", { topic: chosen.keyword });
     const slug = await uniqueSlug(slugify(raw.slug || post.title));
     const saved = await Post.create({
       ...post,
@@ -164,6 +194,7 @@ async function runGeneration(forcedTopic, onSaved) {
 
     // 5. Refresh cached pages (failures here are non-fatal: /blog also
     //    revalidates on a timer)
+    await stage("revalidate", { slug });
     try {
       await onSaved(slug);
     } catch (e) {
@@ -184,14 +215,61 @@ async function runGeneration(forcedTopic, onSaved) {
       ms: Date.now() - started,
     };
     console.log("[cron/generate-blog] created", JSON.stringify(result));
+    await stage("done", { status: "success", ms: result.ms, finishedAt: new Date() });
     return { status: 201, body: result };
   } catch (err) {
     console.error("[cron/generate-blog]", err);
+    const skipped = err instanceof SkipError;
+    await stage(undefined, {
+      status: skipped ? "skipped" : "error",
+      error: err.message,
+      ms: Date.now() - started,
+      finishedAt: new Date(),
+    });
     return {
-      status: err instanceof SkipError ? 422 : 500,
+      status: skipped ? 422 : 500,
       body: { ok: false, error: err.message, ms: Date.now() - started },
     };
   }
+}
+
+async function statusReport() {
+  await dbConnect();
+  const [runs, posts, total] = await Promise.all([
+    CronRun.find({}).sort({ createdAt: -1 }).limit(10).lean(),
+    Post.find({}).sort({ createdAt: -1 }).limit(5).select("slug title status createdAt").lean(),
+    Post.countDocuments({}),
+  ]);
+  const staleAfter = (maxDuration + 30) * 1000;
+  return {
+    ok: true,
+    config: {
+      model: process.env.GEMINI_MODEL || "gemini-3.8-flash",
+      grounding: process.env.GEMINI_GROUNDING !== "false",
+      autoPublish: process.env.BLOG_AUTO_PUBLISH !== "false",
+      minIntervalMinutes: MIN_INTERVAL_MIN,
+      maxDurationSeconds: maxDuration,
+    },
+    totalPosts: total,
+    latestPosts: posts.map((p) => ({ url: `/blog/${p.slug}`, title: p.title, status: p.status, createdAt: p.createdAt })),
+    runs: runs.map((r) => {
+      const timedOut = r.status === "running" && Date.now() - new Date(r.createdAt).getTime() > staleAfter;
+      return {
+        at: r.createdAt,
+        trigger: r.trigger,
+        status: timedOut ? "timed-out" : r.status,
+        stage: r.stage,
+        ...(timedOut && {
+          hint: `Killed by Vercel during "${r.stage}". Enable Fluid Compute (Settings → Functions) so the 300s limit applies.`,
+        }),
+        error: r.error,
+        topic: r.topic,
+        url: r.slug ? `/blog/${r.slug}` : undefined,
+        seconds: r.ms ? Math.round(r.ms / 1000) : undefined,
+        sourceErrors: r.sourceErrors?.length ? r.sourceErrors : undefined,
+      };
+    }),
+  };
 }
 
 async function handler(req) {
@@ -228,9 +306,36 @@ async function handler(req) {
     );
   }
 
+  // Fail fast (and visibly) if MongoDB is unreachable — e.g. paused Atlas
+  // cluster or Network Access not allowing 0.0.0.0/0.
+  try {
+    await dbConnect();
+  } catch (err) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error: `Cannot connect to MongoDB: ${err.message}`,
+        hint: "In Atlas: resume the cluster if paused, and allow 0.0.0.0/0 under Network Access.",
+      },
+      { status: 503 }
+    );
+  }
+
+  if (params.get("status") === "1") {
+    return NextResponse.json(await statusReport());
+  }
+
+  const wait = params.get("wait") === "1";
+  const skipReason = await shouldSkip(params.get("force") === "1" || Boolean(forcedTopic));
+  if (skipReason) {
+    // 200 so cron-job.org doesn't count an intentional skip as a failure
+    return NextResponse.json({ ok: true, skipped: true, reason: skipReason });
+  }
+  const run = await CronRun.create({ trigger: wait ? "wait" : "background", stage: "start" });
+
   // `?wait=1` → run synchronously and return the full result (manual testing).
-  if (params.get("wait") === "1") {
-    const { status, body } = await runGeneration(forcedTopic, async (slug) => revalidateBlog(slug));
+  if (wait) {
+    const { status, body } = await runGeneration(forcedTopic, async (slug) => revalidateBlog(slug), run);
     return NextResponse.json(body, { status });
   }
 
@@ -245,9 +350,14 @@ async function handler(req) {
     });
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
   };
-  waitUntil(runGeneration(forcedTopic, selfRevalidate));
+  waitUntil(runGeneration(forcedTopic, selfRevalidate, run));
   return NextResponse.json(
-    { ok: true, queued: true, message: "Blog generation started. Check /blog in about a minute." },
+    {
+      ok: true,
+      queued: true,
+      runId: String(run._id),
+      message: "Blog generation started. Check /blog in 1–3 minutes, or ?status=1 for the result.",
+    },
     { status: 202 }
   );
 }

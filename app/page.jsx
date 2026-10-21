@@ -4,6 +4,19 @@ import TechMarquee from "./(components)/TechMarquee.jsx";
 import AboutFooter from "./(components)/AboutFooter.jsx";
 import GithubActivity from "./(components)/GithubActivity.jsx";
 import Reveal from "./(components)/Reveal.jsx";
+import JsonLd from "./(components)/JsonLd.jsx";
+import site from "./utils/siteMetaData.js";
+import { pageMetadata } from "./lib/seo.js";
+import { getPublishedPosts, formatDate } from "./lib/posts.js";
+
+export const revalidate = 3600;
+
+export const metadata = pageMetadata({
+  title: site.title,
+  description: site.description,
+  path: "/",
+  keywords: ["full-stack developer India", "AI product engineer", "Next.js developer", "RAG chatbot developer"],
+});
 
 const featured = [
   {
@@ -36,9 +49,20 @@ const featured = [
   },
 ];
 
-export default function Page() {
+const profileJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  url: site.siteUrl,
+  name: site.title,
+  mainEntity: { "@id": `${site.siteUrl}/#person` },
+};
+
+export default async function Page() {
+  const latestPosts = await getPublishedPosts({ limit: 3 });
+
   return (
     <main>
+      <JsonLd data={profileJsonLd} />
       <Hero />
 
       <div className="mt-8 mb-24">
@@ -55,7 +79,7 @@ export default function Page() {
             </h2>
           </div>
           <Link
-            href="/Projects"
+            href="/projects"
             className="group inline-flex items-center gap-1.5 text-sm text-[color:var(--ink-soft)] hover:text-[color:var(--amber)] transition-colors whitespace-nowrap"
           >
             All projects
@@ -117,6 +141,34 @@ export default function Page() {
           ))}
         </Reveal>
       </section>
+
+      {latestPosts.length > 0 && (
+        <section className="content-layer max-w-6xl mx-auto px-6 md:px-10 mb-28">
+          <Reveal className="flex items-end justify-between mb-8 flex-wrap gap-4">
+            <div>
+              <p className="eyebrow mb-4">From the blog</p>
+              <h2 className="font-display text-4xl sm:text-5xl">Latest writing</h2>
+            </div>
+            <Link
+              href="/blog"
+              className="text-sm text-[color:var(--ink-soft)] hover:text-[color:var(--amber)] transition-colors whitespace-nowrap"
+            >
+              All posts →
+            </Link>
+          </Reveal>
+          <Reveal stagger className="grid md:grid-cols-3 gap-4">
+            {latestPosts.map((p) => (
+              <Link key={p.slug} href={`/blog/${p.slug}`} className="card p-6 flex flex-col gap-3">
+                <span className="eyebrow">{p.category}</span>
+                <h3 className="font-display text-2xl leading-snug">{p.title}</h3>
+                <p className="text-sm text-[color:var(--ink-mute)] mt-auto">
+                  <time dateTime={p.publishedAt}>{formatDate(p.publishedAt)}</time>
+                </p>
+              </Link>
+            ))}
+          </Reveal>
+        </section>
+      )}
 
       <GithubActivity />
 

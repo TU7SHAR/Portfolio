@@ -9,6 +9,13 @@ const socials = [
   { label: "Email", href: "mailto:gautams4work@gmail.com" },
 ];
 
+const pages = [
+  { href: "/projects", label: "Projects" },
+  { href: "/blog", label: "Blog" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+
 export default function Footer() {
   return (
     <footer className="content-layer relative mt-24 border-t border-[color:rgba(244,239,230,0.08)]">
@@ -20,7 +27,7 @@ export default function Footer() {
               <span className="serif-accent">worth shipping.</span>
             </p>
             <Link
-              href="/ContactMe"
+              href="/contact"
               className="btn-amber mt-6 inline-flex items-center gap-2 px-6 py-3"
             >
               Start a conversation
@@ -41,6 +48,22 @@ export default function Footer() {
             </Link>
           </div>
 
+          <div className="flex gap-16 md:justify-end">
+          <nav aria-label="Footer">
+            <p className="eyebrow mb-4">Pages</p>
+            <ul className="flex flex-col gap-2">
+              {pages.map((p) => (
+                <li key={p.href}>
+                  <Link
+                    href={p.href}
+                    className="text-[color:var(--ink-soft)] hover:text-[color:var(--amber)] transition-colors"
+                  >
+                    {p.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
           <div className="md:text-right">
             <p className="eyebrow mb-4">Elsewhere</p>
             <ul className="flex flex-col gap-2 md:items-end">
@@ -57,6 +80,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+          </div>
           </div>
         </div>
 

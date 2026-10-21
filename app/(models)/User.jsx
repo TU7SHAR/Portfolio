@@ -1,8 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
-mongoose.connect(process.env.MONGO_URI);
-mongoose.Promise = global.Promise;
-
+// Connection is handled by app/lib/db.js (dbConnect) — no top-level connect,
+// which used to fire (and fail) at build time when MONGO_URI was unset.
 const userSchema = new Schema(
   {
     username: String,

@@ -87,7 +87,7 @@ export default function Hero() {
         <h1 className="font-display text-[2.5rem] leading-[1.0] sm:text-7xl lg:text-[6.2rem] tracking-tight max-w-4xl [hyphens:none] [overflow-wrap:normal]">
           <span className="block overflow-hidden py-[0.05em]">
             <Chars text="Full-Stack engineer" className="block" />
-          </span>
+          </span>{" "}
           <span className="block overflow-hidden py-[0.05em]">
             <span className="block">
               <Chars text="crafting " />
@@ -95,7 +95,7 @@ export default function Hero() {
                 <Chars text="AI-native" />
               </span>
             </span>
-          </span>
+          </span>{" "}
           <span className="block overflow-hidden py-[0.05em]">
             <Chars text="products." className="block" />
           </span>
@@ -107,13 +107,13 @@ export default function Hero() {
             apps with <span className="text-[color:var(--ink)]">React</span> &amp;{" "}
             <span className="text-[color:var(--ink)]">Next.js</span> — and shipping
             production AI SaaS end to end: multi-tenant RAG chatbots, an AI
-            astrology platform, and Telegram sales agents.
+            astrology platform, Telegram sales agents and an AI video ad generator.
           </p>
 
           <div className="h-cta flex flex-wrap items-center gap-3 md:justify-end">
             <Magnetic>
               <Link
-                href="/Projects"
+                href="/projects"
                 className="btn-amber inline-flex items-center gap-2 px-6 py-3"
               >
                 View work
@@ -135,7 +135,7 @@ export default function Hero() {
             </Magnetic>
             <Magnetic strength={0.3}>
               <Link
-                href="/ContactMe"
+                href="/contact"
                 className="btn-ghost inline-flex items-center px-6 py-3"
               >
                 Get in touch

@@ -3,7 +3,7 @@ const siteMetaData = {
   author: "Tushar Gautam",
   headerTitle: "Tushar Gautam",
   description:
-    "Portfolio of Tushar Gautam — a frontend-focused full-stack developer building performance-driven web apps with React & Next.js, and shipping production AI products (RAG chatbots, AI astrology) with Flask, Gemini, and PostgreSQL.",
+    "Portfolio of Tushar Gautam — a frontend-focused full-stack developer building performance-driven web apps with React & Next.js, and shipping production AI products (RAG chatbots, AI astrology, AI video ads) with Flask, Gemini, and PostgreSQL.",
   language: "en-us",
   theme: "dark",
   siteUrl: "https://tushargautam.software",

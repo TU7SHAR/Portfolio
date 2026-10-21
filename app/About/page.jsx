@@ -71,9 +71,11 @@ export default function Page() {
               <span className="amber-text">multi-tenant RAG chatbot SaaS</span>{" "}
               (bubbl.ooo), an{" "}
               <span className="amber-text">AI astrology platform</span>{" "}
-              (bhavishai.in), and a{" "}
+              (bhavishai.in), a{" "}
               <span className="amber-text">Telegram sales-bot workspace</span>{" "}
-              (salesji.com). I&apos;m currently interning at{" "}
+              (salesji.com), and an{" "}
+              <span className="amber-text">AI video ad generator</span>{" "}
+              (makeperfectads.com). I&apos;m currently interning at{" "}
               <span className="text-[color:var(--ink)]">DrishInfoTech</span> while
               building production SaaS independently.
             </p>

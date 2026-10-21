@@ -27,6 +27,13 @@ const featured = [
     desc: "A workspace for building and managing AI-powered Telegram sales bots — deploy conversational agents that engage leads and automate sales conversations right inside Telegram.",
     stack: ["Telegram Bot API", "AI Agents", "Next.js", "PostgreSQL"],
   },
+  {
+    name: "makeperfectads.com",
+    tag: "AI Video Ad Generator",
+    href: "https://www.makeperfectads.com",
+    desc: "Paste a link and the Studio reads the page, picks real product images and brand colours, plans a shot-by-shot ad, then produces a short 9:16 or 16:9 video with captions, voiceover and music — in 84 languages, including Hinglish.",
+    stack: ["AI Video", "Web Scraping", "Voiceover · TTS", "84 Languages", "MP4 Export"],
+  },
 ];
 
 export default function Page() {

@@ -8,10 +8,16 @@ const timeline = [
     note: "Core CS foundations, DSA (LeetCode / CodeChef), and building production SaaS on the side.",
   },
   {
-    year: "2023—",
+    year: "2026—",
+    title: "AI Engineer · Building my own products",
+    org: "Independent · makeperfectads.com, bhavishai.in",
+    note: "Now building makeperfectads.com and bhavishai.in as personal products with an agentic, AI-assisted workflow — full-time on my own stack.",
+  },
+  {
+    year: "2023—26",
     title: "AI Engineer · Full-Stack Development",
-    org: "Intern at DrishInfoTech · Building my own products",
-    note: "Built bubbl.ooo (RAG chatbot SaaS) and salesji.com (Telegram sales bots) at DrishInfoTech; building makeperfectads.com and bhavishai.in as personal products — all with an agentic, AI-assisted workflow.",
+    org: "Intern at DrishInfoTech (ended July 2026)",
+    note: "Built bubbl.ooo (RAG chatbot SaaS) and salesji.com (Telegram sales bots) at DrishInfoTech with an agentic, AI-assisted workflow.",
   },
   {
     year: "2021—22",

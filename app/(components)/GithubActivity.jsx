@@ -22,6 +22,60 @@ function levelFor(count, max) {
   return 1;
 }
 
+// Infer what I'm likely up to lately from how much I've been pushing. Compares
+// the last 14 days against my typical fortnight over the whole year, so the
+// read-out tracks *my* rhythm rather than an absolute "X commits = busy".
+function inferStatus(days) {
+  if (!days || days.length < 21) return null;
+
+  const recent = days.slice(-14);
+  const recentSum = recent.reduce((s, d) => s + d.count, 0);
+  const activeDays = recent.filter((d) => d.count > 0).length;
+  const daysSinceLast = (() => {
+    for (let i = days.length - 1, n = 0; i >= 0; i--, n++) {
+      if (days[i].count > 0) return n;
+    }
+    return days.length;
+  })();
+
+  // My own baseline: average contributions per 14-day window across the year.
+  const yearSum = days.reduce((s, d) => s + d.count, 0);
+  const baseline = (yearSum / days.length) * 14;
+  const ratio = recentSum / Math.max(baseline, 1);
+
+  // Heavy shipping: well above my usual pace and pushing most days.
+  if (ratio >= 1.15 && activeDays >= 7) {
+    return {
+      key: "shipping",
+      label: "Heads-down shipping code",
+      detail: `${recentSum} contributions in the last 2 weeks — above my usual pace.`,
+      dot: "#f2b866",
+      live: true,
+    };
+  }
+  // Steady building: roughly on pace.
+  if (ratio >= 0.5 && activeDays >= 3) {
+    return {
+      key: "building",
+      label: "Building steadily",
+      detail: `${recentSum} contributions across ${activeDays} active days recently.`,
+      dot: "rgba(224,160,73,0.75)",
+      live: true,
+    };
+  }
+  // Quiet on GitHub: likely learning / planning rather than pushing.
+  return {
+    key: "learning",
+    label: "Studying & leveling up",
+    detail:
+      daysSinceLast >= 4
+        ? `Quieter on GitHub lately (last push ${daysSinceLast} days ago) — usually means I'm deep in learning, planning or a private build.`
+        : "Lighter on public pushes right now — likely learning or working in a private repo.",
+    dot: "rgba(224,160,73,0.4)",
+    live: true,
+  };
+}
+
 // build a plausible static fallback so the chart never looks empty/broken
 function buildFallback() {
   const days = [];
@@ -106,6 +160,9 @@ export default function GithubActivity() {
 
   const max = days ? Math.max(...days.map((d) => d.count)) : 0;
 
+  // Only infer a "what I'm up to" read-out from real data, never the sample.
+  const status = live && days ? inferStatus(days) : null;
+
   // group into weeks (columns)
   const weeks = [];
   if (days) {
@@ -137,7 +194,7 @@ export default function GithubActivity() {
           href={`https://github.com/${USER}`}
           target="_blank"
           rel="noreferrer noopener"
-          className="group inline-flex items-center gap-1.5 text-sm text-[color:var(--ink-soft)] hover:text-[color:var(--amber)] transition-colors"
+          className="group inline-flex items-center gap-1.5 text-sm text-[color:var(--ink-soft)] hover:text-[color:var(--amber)] transition-colors self-start sm:self-auto"
         >
           @{USER} on GitHub
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
@@ -145,6 +202,32 @@ export default function GithubActivity() {
           </svg>
         </a>
       </Reveal>
+
+      {status && (
+        <Reveal
+          className="mb-4 inline-flex items-start gap-3 rounded-xl border border-[color:var(--hairline,rgba(244,239,230,0.1))] bg-[rgba(224,160,73,0.05)] px-4 py-3"
+          title={status.detail}
+        >
+          <span className="relative mt-1 flex h-2.5 w-2.5 shrink-0">
+            <span
+              className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-60"
+              style={{ background: status.dot }}
+            />
+            <span
+              className="relative inline-flex h-2.5 w-2.5 rounded-full"
+              style={{ background: status.dot }}
+            />
+          </span>
+          <span className="min-w-0">
+            <span className="block text-sm font-medium text-[color:var(--ink)]">
+              {status.label}
+            </span>
+            <span className="block text-xs leading-snug text-[color:var(--ink-soft)]">
+              {status.detail}
+            </span>
+          </span>
+        </Reveal>
+      )}
 
       <Reveal className="card p-6 sm:p-8 overflow-hidden">
         <div className="flex items-center justify-between mb-5 flex-wrap gap-3">

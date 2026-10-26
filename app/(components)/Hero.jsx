@@ -150,7 +150,7 @@ export default function Hero() {
 
         <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
           <p className="h-meta text-sm text-[color:var(--ink-mute)]">
-            Available for work · Interning @ DrishInfoTech · Kharar, Punjab
+            Available for work · Building my own products · Kharar, Punjab
           </p>
           <ul className="flex items-center gap-6">
             {socials.map((s) => (

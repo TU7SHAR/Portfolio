@@ -32,7 +32,11 @@ export function pageMetadata({
     title: { absolute: title },
     description,
     keywords: [...new Set([...keywords, ...BASE_KEYWORDS])],
-    alternates: { canonical: path },
+    alternates: {
+      canonical: path,
+      // lets feed readers and crawlers discover the blog feed from any page
+      types: { "application/rss+xml": [{ url: "/blog/feed.xml", title: `${site.author} — Tech Blog` }] },
+    },
     openGraph: {
       title,
       description,

@@ -10,7 +10,7 @@ export default async function Image({ params }) {
   const post = await getPostBySlug(params.slug);
   return renderOg({
     eyebrow: post ? `${post.category} · ${formatDate(post.publishedAt)}` : "The blog",
-    title: post?.title || "Notes on AI, the web & trending tech",
+    title: post?.title || "Notes from building AI products",
     subtitle: post ? `${post.readingMinutes} min read · by Tushar Gautam` : undefined,
     tags: post?.tags || [],
   });

@@ -11,7 +11,7 @@ import { getPublishedPosts, countPublishedPosts, formatDate } from "../lib/posts
 export const dynamic = "force-dynamic";
 
 const PER_PAGE = 24;
-const KEYWORDS = ["tech blog", "AI news", "web development blog", "trending tech", "programming blog India"];
+const KEYWORDS = ["Next.js blog", "Gemini API tutorial", "web development blog", "AI engineering blog", "developer blog India"];
 
 const pageFrom = (searchParams) => {
   const n = Number(searchParams?.page || 1);
@@ -22,16 +22,16 @@ export function generateMetadata({ searchParams }) {
   const page = pageFrom(searchParams);
   if (!page || page === 1) {
     return pageMetadata({
-      title: "Tech Blog by Tushar Gautam — AI, Web Dev & Trending Tech",
+      title: "Tushar Gautam's Blog: Next.js, Gemini API & Shipping AI Apps",
       description:
-        "Read Tushar Gautam's tech blog for fresh, practical takes on trending AI, web development, programming and startup news, written for developers and builders.",
+        "Practical, first-hand guides from building AI SaaS products: Next.js App Router, the Gemini API, Vercel, Razorpay and SEO, with working code and real gotchas.",
       path: "/blog",
       keywords: KEYWORDS,
     });
   }
   return pageMetadata({
-    title: `Tech Blog by Tushar Gautam — AI & Web Dev Posts, Page ${page}`,
-    description: `Page ${page} of Tushar Gautam's tech blog: fresh, practical takes on trending AI, web development, programming and startup news, written for developers & builders.`,
+    title: `Tushar Gautam's Blog: Next.js, Gemini & AI Apps, Page ${page}`,
+    description: `Page ${page} of Tushar Gautam's blog: first-hand guides on the Next.js App Router, the Gemini API, Vercel, Razorpay and SEO, with working code.`,
     path: `/blog?page=${page}`,
     keywords: KEYWORDS,
   });
@@ -61,7 +61,7 @@ export default async function BlogIndex({ searchParams }) {
             "@id": `${site.siteUrl}/blog#blog`,
             url: `${site.siteUrl}/blog`,
             name: "Tushar Gautam — Tech Blog",
-            description: "Practical takes on trending AI, web development, programming and startup news.",
+            description: "First-hand guides from building AI SaaS products with Next.js, the Gemini API and Vercel.",
             author: { "@id": `${site.siteUrl}/#person` },
             blogPost: posts.slice(0, 20).map((p) => ({
               "@type": "BlogPosting",
@@ -76,12 +76,12 @@ export default async function BlogIndex({ searchParams }) {
       <Reveal className="max-w-3xl mb-14 mt-4">
         <p className="eyebrow mb-4">The blog</p>
         <h1 className="font-display text-5xl sm:text-6xl leading-[1.02] mb-6">
-          Notes on AI, the web &amp;{" "}
-          <span className="serif-accent">what&apos;s trending.</span>
+          Notes from building{" "}
+          <span className="serif-accent">AI products.</span>
         </h1>
         <p className="text-lg text-[color:var(--ink-soft)] leading-relaxed">
-          Short, practical reads on the tech everyone is talking about — and what it
-          means if you build software for a living.
+          Practical guides from shipping Next.js, Gemini and Python apps: the errors I hit,
+          the fixes that worked, and the code.
         </p>
       </Reveal>
 

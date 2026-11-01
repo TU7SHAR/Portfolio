@@ -167,7 +167,7 @@ export default function Page() {
         title="More projects"
         sub="Earlier apps and experiments. These are paused right now while I focus on the products above — the code is still on GitHub."
       />
-      <Reveal stagger className="grid md:grid-cols-2 gap-4 mb-24">
+      <Reveal stagger className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-24 [&>*]:min-w-0">
         {moreProjects.map((p) => (
           <Link
             key={p.name}
@@ -179,7 +179,7 @@ export default function Page() {
             <Logo item={p} />
             <div className="min-w-0 flex-1">
               <div className="flex items-start justify-between gap-3">
-                <div>
+                <div className="min-w-0">
                   <h3 className="font-medium text-lg text-[color:var(--ink)] group-hover:text-[color:var(--amber)] transition-colors">
                     {p.name}
                   </h3>

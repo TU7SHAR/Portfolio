@@ -1,7 +1,7 @@
 // Collects trending keywords from public, key-less sources:
-//  • Google Trends daily RSS (US + India) — "famous things" people search for
 //  • Hacker News top stories            — tech
 //  • DEV.to top articles (past week)    — dev / tech
+//  • Google Trends daily RSS (US + India) — opt-in, see collectTrendingTopics()
 // Each source is fetched independently; one failing never breaks the others.
 
 const UA = "Mozilla/5.0 (compatible; TusharPortfolioBot/1.0; +https://tushargautam.software)";
@@ -106,11 +106,14 @@ export const normalizeTopic = (s = "") =>
 /** Returns `{ candidates, errors }`. Candidates are de-duplicated. */
 export async function collectTrendingTopics() {
   const sources = [
-    ["Google Trends (US)", () => googleTrends("US")],
-    ["Google Trends (IN)", () => googleTrends("IN")],
     ["Hacker News", () => hackerNews()],
     ["DEV.to", () => devTo()],
   ];
+  // Google Trends is mostly sports, celebrities and news — topics a personal
+  // tech blog can't rank for. Opt in with BLOG_GOOGLE_TRENDS=true.
+  if (process.env.BLOG_GOOGLE_TRENDS === "true") {
+    sources.push(["Google Trends (US)", () => googleTrends("US")], ["Google Trends (IN)", () => googleTrends("IN")]);
+  }
 
   const results = await Promise.allSettled(sources.map(([, fn]) => fn()));
   const errors = [];

@@ -7,6 +7,7 @@ const CronRunSchema = new Schema(
     status: { type: String, enum: ["running", "success", "skipped", "error"], default: "running", index: true },
     stage: String, // last step reached: start → scrape → gemini → save → revalidate → done
     trigger: String, // "background" | "wait"
+    mode: String, // "evergreen" | "trending"
     topic: String,
     slug: String,
     error: String,

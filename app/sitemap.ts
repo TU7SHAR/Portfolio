@@ -10,7 +10,6 @@ type Freq = MetadataRoute.Sitemap[number]["changeFrequency"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteMetaData.siteUrl;
-  const now = new Date();
 
   const pages: { path: string; priority: number; changeFrequency: Freq }[] = [
     { path: "", priority: 1, changeFrequency: "weekly" },
@@ -25,11 +24,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const posts = await getPublishedPosts({ limit: 5000 });
+  // lastmod only where we actually know it: Google ignores lastmod values that
+  // change on every request.
+  const latestPost = posts[0] ? new Date(posts[0].updatedAt || posts[0].publishedAt) : undefined;
 
   return [
     ...pages.map(({ path, priority, changeFrequency }) => ({
       url: `${base}${path}`,
-      lastModified: now,
+      ...(path === "/blog" && latestPost && { lastModified: latestPost }),
       changeFrequency,
       priority,
     })),
